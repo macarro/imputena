@@ -6,8 +6,8 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name='imputena',
     version='0.0.1',
-    description='Package allowing both automated and customized treatment of '
-            'missing values in datasets',
+    description='Package that allows both automated and customized treatment '
+            'of missing values in datasets using Python',
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
