@@ -15,6 +15,7 @@ def delete_pairwise(data=None, columns=None, inplace=False):
     :return: The dataframe with all rows containing NA in one or more of the
      specified columns eliminated.
     :rtype: pandas.DataFrame
+    :raises: TypeError, ValueError
     """
     if not isinstance(data, pd.DataFrame):
         raise TypeError('The data has to be a DataFrame.')

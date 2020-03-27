@@ -11,6 +11,7 @@ def delete_listwise(data=None, inplace=False):
     :type inplace: bool, optional
     :return: The series or dataframe with all rows containing NA eliminated.
     :rtype: pandas.Series or pandas.DataFrame, depending on the input
+    :raises: TypeError
     """
     if not (isinstance(data, pd.Series) or isinstance(data, pd.DataFrame)):
         raise TypeError('The data has to be a Series or DataFrame.')
