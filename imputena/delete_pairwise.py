@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def delete_pairwise(data=None, columns=None, inplace=False):
+def delete_pairwise(data=None, columns=None, threshold=None, inplace=False):
     """Performs pairwise deletion on the data.
 
     :param data: The data on which to perform the listwise deletion of missing
@@ -10,6 +10,8 @@ def delete_pairwise(data=None, columns=None, inplace=False):
     :param columns: rows will be dropped if any of their value in any of those
     columns is NA
     :type columns: array-like
+    :param threshold: Require that many non-NA values in the specified columns
+    :type threshold: int, optional
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, optional
     :return: The dataframe with all rows containing NA in one or more of the
@@ -23,7 +25,7 @@ def delete_pairwise(data=None, columns=None, inplace=False):
         if column not in data.columns:
             raise ValueError('\'' + column + '\' is not a column of the data.')
     if inplace:
-        data.dropna(inplace=True, subset=columns)
+        data.dropna(inplace=True, thresh=threshold, subset=columns)
         return None
     else:
-        return data.dropna(subset=columns)
+        return data.dropna(thresh=threshold, subset=columns)

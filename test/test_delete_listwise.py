@@ -105,5 +105,39 @@ class TestDeleteListwise(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             delete_listwise()
 
+    def test_delete_listwise_threshold(self):
+        """
+        Positive test
+
+        data: Correct dataframe
+        threshold: 2
+
+        Checks that the dataframe has 4 rows after applying delete_listwise
+        with threshold 2 on it.
+        """
+        # 1. Arrange
+        df = generate_example_df()
+        # 2. Act
+        delete_listwise(df, threshold=2, inplace=True)
+        # 3. Assert
+        self.assertTrue(len(df.index) == 4)
+
+    def test_delete_listwise_threshold_series(self):
+        """
+        Negative test
+
+        data: Series
+        threshold: 2, even though delete_listwise shouldn't receive a threshold
+        if the data is a series
+
+        Checks that the delete_listwise raises a ValueError if the data is a
+        series and a threshold os passed.
+        """
+        # 1. Arrange
+        es = generate_example_series()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError) as context:
+            delete_listwise(es, threshold=2, inplace=True)
+
     if __name__ == '__main__':
         unittest.main()

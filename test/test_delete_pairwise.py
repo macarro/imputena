@@ -85,5 +85,22 @@ class TestDeletePairwise(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             df2 = delete_pairwise(df, ['x', 'a'], inplace=True)
 
+    def test_delete_pairwise_threshold(self):
+        """
+        Positive test
+
+        data: Correct dataframe
+        threshold: 2
+
+        Checks that the dataframe has 3 rows after applying delete_pairwise
+        with threshold 2 on it.
+        """
+        # 1. Arrange
+        df = generate_example_df()
+        # 2. Act
+        df2 = delete_pairwise(df, ['x', 'z'], threshold=2, inplace=True)
+        # 3. Assert
+        self.assertTrue(len(df.index) == 3)
+
     if __name__ == '__main__':
         unittest.main()
