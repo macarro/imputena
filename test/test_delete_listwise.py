@@ -131,7 +131,7 @@ class TestDeleteListwise(unittest.TestCase):
         if the data is a series
 
         Checks that the delete_listwise raises a ValueError if the data is a
-        series and a threshold os passed.
+        series and a threshold is passed.
         """
         # 1. Arrange
         es = generate_example_series()
