@@ -13,7 +13,7 @@ def delete_listwise(data=None, inplace=False):
     :rtype: pandas.Series or pandas.DataFrame, depending on the input
     """
     if not (isinstance(data, pd.Series) or isinstance(data, pd.DataFrame)):
-        raise TypeError('The data has to be a Series or DataFrame')
+        raise TypeError('The data has to be a Series or DataFrame.')
     if inplace:
         data.dropna(inplace=True)
         return None
