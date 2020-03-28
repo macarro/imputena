@@ -16,9 +16,13 @@ setuptools.setup(
     author_email='migmackle@alum.us.es',
     license='MIT',
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
     ],
     python_requires='>=3.6',
+    install_requires=[
+        'pandas',
+        'numpy'
+    ],
 )
