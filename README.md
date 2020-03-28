@@ -1,5 +1,7 @@
 # imputena
 
+[![Build Status](https://travis-ci.com/macarro/imputena.svg?branch=master)](https://travis-ci.com/macarro/imputena)
+
 Package that allows both automated and customized treatment of missing values
 in datasets using Python
 
