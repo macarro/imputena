@@ -138,6 +138,3 @@ class TestDeleteListwise(unittest.TestCase):
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError) as context:
             delete_listwise(es, threshold=2, inplace=True)
-
-    if __name__ == '__main__':
-        unittest.main()

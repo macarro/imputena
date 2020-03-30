@@ -101,6 +101,3 @@ class TestDeletePairwise(unittest.TestCase):
         df2 = delete_pairwise(df, ['x', 'z'], threshold=2, inplace=True)
         # 3. Assert
         self.assertTrue(len(df.index) == 3)
-
-    if __name__ == '__main__':
-        unittest.main()

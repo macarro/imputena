@@ -117,7 +117,6 @@ class TestDeleteColumns(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             delete_columns()
 
-
     def test_delete_columns_wrong_column(self):
         """
         Negative test
@@ -132,4 +131,3 @@ class TestDeleteColumns(unittest.TestCase):
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError) as context:
             delete_columns(df, columns=['d', 'e', 'z'], inplace=True)
-
