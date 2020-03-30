@@ -7,6 +7,8 @@ from .example_data import *
 
 class TestLOCF(unittest.TestCase):
 
+    # Positive tests for data as dataframe ------------------------------------
+
     def test_LOCF_df_returning(self):
         """
         Positive test
@@ -143,7 +145,7 @@ class TestLOCF(unittest.TestCase):
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 14)
 
-    # Tests for data as series ------------------------------------------------
+    # Positive tests for data as series ---------------------------------------
 
     def test_LOCF_series_returning(self):
         """
@@ -210,3 +212,54 @@ class TestLOCF(unittest.TestCase):
         locf(es, fill_leading=True, inplace=True)
         # 3. Assert
         self.assertEqual(es.isna().sum(), 0)
+
+    # Negative tests ----------------------------------------------------------
+
+    def test_LOCF_wrong_type(self):
+        """
+        Negative test
+
+        data: array (unupported type
+
+        Checks that the locf raises a TypeError if the data is passed as an
+        array.
+        """
+        # 1. Arrange
+        data = [2, 4, np.nan, 1]
+        # 2. Act & 3. Assert
+        with self.assertRaises(TypeError) as context:
+            df2 = locf(data)
+
+    def test_LOCF_df_returning_wrong_column(self):
+        """
+        Negative test
+
+        data: Correct dataframe (divcols)
+        columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
+
+        Checks that the locf raises a TypeError if the data is passed as an
+        array.
+        """
+        # 1. Arrange
+        df = generate_example_df_divcols()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError) as context:
+            df2 = locf(df, columns=['f', 'g', 'z'])
+
+    def test_LOCF_df_inplace_wrong_column(self):
+        """
+        Negative test
+
+        data: Correct dataframe (divcols)
+        columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
+
+        Checks that the locf raises a TypeError if the data is passed as an
+        array.
+        """
+        # 1. Arrange
+        df = generate_example_df_divcols()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError) as context:
+            locf(df, columns=['f', 'g', 'z'], inplace=True)
+
+
