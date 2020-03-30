@@ -12,8 +12,9 @@ def delete_listwise(data=None, threshold=None, inplace=False):
     :type threshold: int, optional
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, optional
-    :return: The series or dataframe with all rows containing NA eliminated.
-    :rtype: pandas.Series or pandas.DataFrame, depending on the input
+    :return: The series or dataframe with all rows containing NA eliminated, or
+    None if inplace=True.
+    :rtype: pandas.Series, pandas.DataFrame, or None
     :raises: TypeError, ValueError
     """
     if not (isinstance(data, pd.Series) or isinstance(data, pd.DataFrame)):

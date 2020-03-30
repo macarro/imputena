@@ -16,8 +16,9 @@ def delete_columns(data=None, columns=None, threshold=None, inplace=False):
     :type threshold: int, optional
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, optional.
-    :return: The dataframe with columns that contain NA dropped.
-    :rtype: pandas.DataFrame
+    :return: The dataframe with columns that contain NA dropped or None if
+    inplace=True.
+    :rtype: pandas.DataFrame or None
     :raises: TypeError, ValueError
     """
     if not isinstance(data, pd.DataFrame):
