@@ -100,7 +100,7 @@ class TestLOCF(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g']
 
-        Checks that locf returns 2 NA values from the specified columns.
+        Checks that locf removes 2 NA values from the specified columns.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -118,7 +118,7 @@ class TestLOCF(unittest.TestCase):
         fill_leading: True
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 14 NA values, 2 less than the original.
+        returned dataframa contains 14 NA values, 4 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -154,7 +154,7 @@ class TestLOCF(unittest.TestCase):
         data: Correct Series (example series)
 
         Checks that the original series remains unmodified and that the
-        returned series contains 1 NA values, 2 less than the original.
+        returned series contains 1 NA value, 2 less than the original.
         """
         # 1. Arrange
         es = generate_example_series()
