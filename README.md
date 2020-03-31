@@ -33,3 +33,14 @@ directory:
 python -m unittest test.test_delete_listwise
 ```
 
+## Documentation
+
+The documentation is generated using sphinx using the docstrings. To generate
+it, run either of the following commands at the `docs` directory:
+
+```ShellSession
+make html
+make latexpdf
+```
+
+The generated documentation will be located in `docs/build`.
