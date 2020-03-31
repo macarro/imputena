@@ -5,15 +5,15 @@ def delete_listwise(data=None, threshold=None, inplace=False):
     """Performs listwise deletion on the data.
 
     :param data: The data on which to perform the listwise deletion of missing
-    values.
+        values.
     :type data: pandas.Series or pandas.DataFrame
     :param threshold: If the data is a DataFrame, require that many non-NA
-    values
+        values
     :type threshold: int, optional
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, optional
     :return: The series or dataframe with all rows containing NA eliminated, or
-    None if inplace=True.
+        None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None
     :raises: TypeError, ValueError
     """

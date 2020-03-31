@@ -12,12 +12,12 @@ def locf(data=None, columns=None, fill_leading=False, inplace=False):
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
     :param fill_leading: Whether to fill in leading NA values with the first
-    observation.
+        observation.
     :type fill_leading: bool, optional
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, optional
     :return: The series or dataframe with NA values filled in, or
-    None if inplace=True.
+        None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None
     :raises: TypeError, ValueError
     """

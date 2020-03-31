@@ -5,17 +5,17 @@ def delete_pairwise(data=None, columns=None, threshold=None, inplace=False):
     """Performs pairwise deletion on the data.
 
     :param data: The data on which to perform the pairwise deletion of missing
-    values.
+        values.
     :type data: pandas.DataFrame
     :param columns: rows will be dropped if any of their value in any of those
-    columns is NA.
+        columns is NA.
     :type columns: array-like
     :param threshold: Require that many non-NA values in the specified columns
     :type threshold: int, optional.
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, optional.
     :return: The dataframe with all rows containing NA in one or more of the
-     specified columns eliminated or None if inplace=True.
+        specified columns eliminated or None if inplace=True.
     :rtype: pandas.DataFrame o None
     :raises: TypeError, ValueError
     """

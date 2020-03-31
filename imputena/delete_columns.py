@@ -5,19 +5,19 @@ def delete_columns(data=None, columns=None, threshold=None, inplace=False):
     """Drops variables that contain NA values from the data.
 
     :param data: The data on which to perform the pairwise dropping of
-    variables.
+        variables.
     :type data: pandas.DataFrame
     :param columns: The columns which should be considered. If not passed or
-    None, all columns will be considered.
+        None, all columns will be considered.
     :type columns: array-like, optional
     :param threshold: Require that many non-NA values in order to not drop a
-    column. If not passed or None, all columns with any NA value will be
-    dropped.
+        column. If not passed or None, all columns with any NA value will be
+        dropped.
     :type threshold: int, optional
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, optional
     :return: The dataframe with columns that contain NA dropped or None if
-    inplace=True.
+        inplace=True.
     :rtype: pandas.DataFrame or None
     :raises: TypeError, ValueError
     """
