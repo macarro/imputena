@@ -16,7 +16,7 @@ class TestNOCB(unittest.TestCase):
         data: Correct dataframe (divcols)
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 11 NA values, 7 less than the original.
+        returned dataframe contains 11 NA values, 7 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -49,7 +49,7 @@ class TestNOCB(unittest.TestCase):
         fill_trailing: True
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 10 NA values, 8 less than the original.
+        returned dataframe contains 10 NA values, 8 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -83,7 +83,7 @@ class TestNOCB(unittest.TestCase):
         columns: ['f', 'g']
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 15 NA values, 5 less than the original.
+        returned dataframa contains 15 NA values, 3 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -219,7 +219,7 @@ class TestNOCB(unittest.TestCase):
         """
         Negative test
 
-        data: array (unupported type
+        data: array (unsupported type)
 
         Checks that the nocb raises a TypeError if the data is passed as an
         array.
