@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-def hot_deck_imputation(
+def random_hot_deck_imputation(
         data=None, incomplete_variable=None, deck_variables=None,
         inplace=False):
     # Check if data is a dataframe:
