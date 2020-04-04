@@ -160,5 +160,3 @@ class TestRandomSampleImputation(unittest.TestCase):
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError) as context:
             random_sample_imputation(df, columns=['f', 'g', 'z'], inplace=True)
-
-
