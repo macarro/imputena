@@ -152,8 +152,8 @@ class TestRandomSampleImputation(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that the random_sample_imputation raises a TypeError if the
-        data is passed as an array.
+        Checks that the random_sample_imputation raises a ValueError if one
+        of the given columns doesn't exist in the data.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
