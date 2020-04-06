@@ -75,6 +75,37 @@ def generate_example_df_divcols():
     )
 
 
+def generate_example_df_hotdeck():
+    """
+    Example data frame with 6 rows for 4 columns. Prepared specifically for
+    testing random hot deck imputation.
+
+    Representation:
+
+         a  b     c  d
+    1  3.1  x  None  i
+    2  NaN  x     a  j
+    3  NaN  y     b  k
+    4  5.7  y     c  l
+    5  8.0  x     d  m
+    6  1.2  y     e  n
+    """
+    return pd.DataFrame(
+        data={
+            'a': np.array([
+                3.1, np.nan, np.nan, 5.7, 8.0, 1.2]),
+            'b': np.array([
+                'x', 'x', 'y', 'y', 'x', 'y']),
+            'c': np.array([
+                None, 'a', 'b', 'c', 'd', 'e']),
+            'd': np.array([
+                'i', 'j', 'k', 'l', 'm', 'n']),
+
+        },
+        index=list([x for x in range(1, 7)])
+    )
+
+
 def generate_example_series():
     return pd.Series(
         data=np.array([np.nan, 4, -3, np.nan, 24, np.nan]),
