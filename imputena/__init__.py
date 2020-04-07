@@ -8,3 +8,4 @@ from .random_hot_deck_imputation import random_hot_deck_imputation
 from .most_frequent import most_frequent
 from .mean_substitution import mean_substitution
 from .constant_value_imputation import constant_value_imputation
+from .random_value_imputation import random_value_imputation
