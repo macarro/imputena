@@ -1,47 +1,48 @@
 import unittest
 
-from imputena import most_frequent
+from imputena import constant_value_imputation
 
 from .example_data import *
 
 
-class TestMostFrequent(unittest.TestCase):
+class TestConstantValueImputation(unittest.TestCase):
 
     # Positive tests for data as dataframe ------------------------------------
 
-    def test_MF_df_returning(self):
+    def test_CVI_df_returning(self):
         """
         Positive test
 
         data: Correct dataframe (divcols)
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframe contains 10 NA values, 8 less than the original.
+        returned dataframe contains 0 NA values, 18 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act
-        df2 = most_frequent(df)
+        df2 = constant_value_imputation(df)
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 18)
-        self.assertEqual(df2.isna().sum().sum(), 10)
+        self.assertEqual(df2.isna().sum().sum(), 0)
 
-    def test_MF_df_inplace(self):
+    def test_CVI_df_inplace(self):
         """
         Positive test
 
         data: Correct dataframe (divcols)
 
-        Checks that most_frequent removes 8 NA values from the dataframe.
+        Checks that constant_value_imputation removes 18 NA values from the
+        dataframe.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act
-        most_frequent(df, inplace=True)
+        constant_value_imputation(df, value=0, inplace=True)
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 10)
+        self.assertEqual(df.isna().sum().sum(), 0)
 
-    def test_MF_df_returning_columns(self):
+    def test_DVI_df_returning_columns(self):
         """
         Positive test
 
@@ -54,31 +55,32 @@ class TestMostFrequent(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act
-        df2 = most_frequent(df, columns=['f', 'g'])
+        df2 = constant_value_imputation(df, value=0, columns=['f', 'g'])
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 18)
         self.assertEqual(df2.isna().sum().sum(), 14)
 
-    def test_MF_df_inplace_columns(self):
+    def test_DVI_df_inplace_columns(self):
         """
         Positive test
 
         data: Correct dataframe (divcols)
         columns: ['f', 'g']
 
-        Checks that most_frequent removes 4 NA values from the specified
-        columns.
+        Checks that constant_value_imputation removes 4 NA values from the
+        specified columns.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act
-        most_frequent(df, columns=['f', 'g'], inplace=True)
+        constant_value_imputation(
+            df, value=0, columns=['f', 'g'], inplace=True)
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 14)
 
     # Positive tests for data as series ---------------------------------------
 
-    def test_MF_series_returning(self):
+    def test_CVI_series_returning(self):
         """
         Positive test
 
@@ -90,71 +92,72 @@ class TestMostFrequent(unittest.TestCase):
         # 1. Arrange
         ser = generate_example_series()
         # 2. Act
-        ser2 = most_frequent(ser)
+        ser2 = constant_value_imputation(ser, value=0)
         # 3. Assert
         self.assertEqual(ser.isna().sum(), 3)
         self.assertEqual(ser2.isna().sum(), 0)
 
-    def test_MF_series_inplace(self):
+    def test_CVI_series_inplace(self):
         """
         Positive test
 
         data: Correct Series (example series)
 
-        Checks that most_frequent removes 3 NA values from the series.
+        Checks that constant_value_imputation removes 3 NA values from the
+        series.
         """
         # 1. Arrange
         ser = generate_example_series()
         # 2. Act
-        most_frequent(ser, inplace=True)
+        constant_value_imputation(ser, value=0, inplace=True)
         # 3. Assert
         self.assertEqual(ser.isna().sum(), 0)
 
     # Negative tests ----------------------------------------------------------
 
-    def test_MF_wrong_type(self):
+    def test_CVI_wrong_type(self):
         """
         Negative test
 
         data: array (unsupported type)
 
-        Checks that the most_frequent raises a TypeError if the data is passed
-        as an array.
+        Checks that the constant_value_imputation raises a TypeError if the
+        data is passed as an array.
         """
         # 1. Arrange
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError) as context:
-            df = most_frequent(data)
+            df = constant_value_imputation(data)
 
-    def test_MF_df_returning_wrong_column(self):
+    def test_CVI_df_returning_wrong_column(self):
         """
         Negative test
 
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that most_frequent raises a ValueError if one of the given
-        columns doesn't exist in the data.
+        Checks that constant_value_imputation raises a ValueError if one of
+        the given columns doesn't exist in the data.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError) as context:
-            df2 = most_frequent(df, columns=['f', 'g', 'z'])
+            df2 = constant_value_imputation(df, columns=['f', 'g', 'z'])
 
-    def test_MF_df_inplace_wrong_column(self):
+    def test_CVI_df_inplace_wrong_column(self):
         """
         Negative test
 
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that most_frequent raises a ValueError if one of the given
-        columns doesn't exist in the data.
+        Checks that constant_value_imputation raises a ValueError if one of
+        the given columns doesn't exist in the data.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError) as context:
-            most_frequent(df, columns=['f', 'g', 'z'], inplace=True)
+            constant_value_imputation(df, columns=['f', 'g', 'z'], inplace=True)
