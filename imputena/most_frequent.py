@@ -22,7 +22,7 @@ def most_frequent(data=None, columns=None, inplace=False):
     # Check if data is a series or dataframe:
     if not (isinstance(data, pd.Series) or isinstance(data, pd.DataFrame)):
         raise TypeError('The data has to be a Series or DataFrame.')
-    # Raise a ValueError if columns a selected for a series:
+    # Raise a ValueError if columns are selected for a series:
     if isinstance(data, pd.Series) and columns is not None:
         raise ValueError('Columns can only be selected if the data is a '
                          'DataFrame.')

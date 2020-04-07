@@ -49,7 +49,7 @@ class TestMostFrequent(unittest.TestCase):
         columns: ['f', 'g']
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 14 NA values, 4 less than the original.
+        returned dataframe contains 14 NA values, 4 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()

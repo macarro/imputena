@@ -17,8 +17,10 @@ def delete_listwise(data=None, threshold=None, inplace=False):
     :rtype: pandas.Series, pandas.DataFrame, or None
     :raises: TypeError, ValueError
     """
+    # Check if data is a series or dataframe:
     if not (isinstance(data, pd.Series) or isinstance(data, pd.DataFrame)):
         raise TypeError('The data has to be a Series or DataFrame.')
+    # If a threshold is given while data is a series, raise a ValueError:
     if isinstance(data, pd.Series) and threshold is not None:
         raise ValueError('A threshold can only be given if the data is a '
                          'DataFrame.')

@@ -21,8 +21,10 @@ def delete_columns(data=None, columns=None, threshold=None, inplace=False):
     :rtype: pandas.DataFrame or None
     :raises: TypeError, ValueError
     """
+    # Check if data is a dataframe:
     if not isinstance(data, pd.DataFrame):
         raise TypeError('The data has to be a DataFrame.')
+    # If no columns are given, the operation will be applied to all of them:
     if columns is None:
         columns = data.columns
     # Array of columns in which the number of non-NA values is not at least the
