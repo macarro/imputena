@@ -6,3 +6,4 @@ from .nocb import nocb
 from .random_sample_imputation import random_sample_imputation
 from .random_hot_deck_imputation import random_hot_deck_imputation
 from .most_frequent import most_frequent
+from .mean_substitution import mean_substitution
