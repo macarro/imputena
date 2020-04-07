@@ -89,12 +89,12 @@ class TestRandomSampleImputation(unittest.TestCase):
         returned series contains no NA values, 3 less than the original.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        es2 = random_sample_imputation(es)
+        ser2 = random_sample_imputation(ser)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 3)
-        self.assertEqual(es2.isna().sum(), 0)
+        self.assertEqual(ser.isna().sum(), 3)
+        self.assertEqual(ser2.isna().sum(), 0)
 
     def test_RSI_series_inplace(self):
         """
@@ -106,11 +106,11 @@ class TestRandomSampleImputation(unittest.TestCase):
         series.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        random_sample_imputation(es, inplace=True)
+        random_sample_imputation(ser, inplace=True)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 0)
+        self.assertEqual(ser.isna().sum(), 0)
 
     # Negative tests ----------------------------------------------------------
 
@@ -136,8 +136,8 @@ class TestRandomSampleImputation(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that the random_sample_imputation raises a TypeError if the
-        data is passed as an array.
+        Checks that the random_sample_imputation raises a ValueError if on
+        of the specified columns doesn't exist in the data.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -153,7 +153,7 @@ class TestRandomSampleImputation(unittest.TestCase):
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
         Checks that the random_sample_imputation raises a ValueError if one
-        of the given columns doesn't exist in the data.
+        of the specified columns doesn't exist in the data.
         """
         # 1. Arrange
         df = generate_example_df_divcols()

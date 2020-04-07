@@ -7,6 +7,8 @@ from .example_data import *
 
 class TestDeleteColumns(unittest.TestCase):
 
+    # Positive tests ----------------------------------------------------------
+
     def test_delete_columns_returning(self):
         """
         Positive test
@@ -89,6 +91,8 @@ class TestDeleteColumns(unittest.TestCase):
         # 3. Assert
         self.assertTrue(len(df.columns) == 7)
 
+    # Negative tests ----------------------------------------------------------
+
     def test_delete_columns_wrong_datatype(self):
         """
         Negative test
@@ -99,10 +103,10 @@ class TestDeleteColumns(unittest.TestCase):
         as a series.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError) as context:
-            delete_columns(es, inplace=True)
+            delete_columns(ser, inplace=True)
 
     def test_delete_columns_no_data(self):
         """

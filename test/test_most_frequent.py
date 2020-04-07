@@ -125,7 +125,7 @@ class TestMostFrequent(unittest.TestCase):
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError) as context:
-            most_frequent(data)
+            df = most_frequent(data)
 
     def test_MF_df_returning_wrong_column(self):
         """

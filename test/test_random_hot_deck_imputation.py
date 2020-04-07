@@ -54,7 +54,7 @@ class TestRandomHotDeckImputation(unittest.TestCase):
         incomplete_variable: a
         deck_variables: ['b', 'c']
 
-        Checks that no NA value gets removes because no row coincides in
+        Checks that no NA value gets removed because no row coincides in
         value for the variable c.
         """
         # 1. Arrange

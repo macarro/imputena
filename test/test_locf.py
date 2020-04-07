@@ -83,7 +83,7 @@ class TestLOCF(unittest.TestCase):
         columns: ['f', 'g']
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 16 NA values, 2 less than the original.
+        returned dataframe contains 16 NA values, 2 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -118,7 +118,7 @@ class TestLOCF(unittest.TestCase):
         fill_leading: True
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 14 NA values, 4 less than the original.
+        returned dataframe contains 14 NA values, 4 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -136,7 +136,7 @@ class TestLOCF(unittest.TestCase):
         columns: ['f', 'g']
         fill_leading: True
 
-        Checks that locf returns 4 NA values from the specified columns.
+        Checks that locf removes 4 NA values from the specified columns.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -157,12 +157,12 @@ class TestLOCF(unittest.TestCase):
         returned series contains 1 NA value, 2 less than the original.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        es2 = locf(es)
+        ser2 = locf(ser)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 3)
-        self.assertEqual(es2.isna().sum(), 1)
+        self.assertEqual(ser.isna().sum(), 3)
+        self.assertEqual(ser2.isna().sum(), 1)
 
     def test_LOCF_series_inplace(self):
         """
@@ -173,11 +173,11 @@ class TestLOCF(unittest.TestCase):
         Checks that locf removes 2 NA values from the series.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        locf(es, inplace=True)
+        locf(ser, inplace=True)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 1)
+        self.assertEqual(ser.isna().sum(), 1)
 
     def test_LOCF_series_returning_fill_leading(self):
         """
@@ -190,12 +190,12 @@ class TestLOCF(unittest.TestCase):
         returned series contains 0 NA values.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        es2 = locf(es, fill_leading=True)
+        ser2 = locf(ser, fill_leading=True)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 3)
-        self.assertEqual(es2.isna().sum(), 0)
+        self.assertEqual(ser.isna().sum(), 3)
+        self.assertEqual(ser2.isna().sum(), 0)
 
     def test_LOCF_series_inplace_fill_leading(self):
         """
@@ -207,11 +207,11 @@ class TestLOCF(unittest.TestCase):
         Checks that locf removes all NA values from the series.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        locf(es, fill_leading=True, inplace=True)
+        locf(ser, fill_leading=True, inplace=True)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 0)
+        self.assertEqual(ser.isna().sum(), 0)
 
     # Negative tests ----------------------------------------------------------
 
@@ -228,7 +228,7 @@ class TestLOCF(unittest.TestCase):
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError) as context:
-            df2 = locf(data)
+            df = locf(data)
 
     def test_LOCF_df_returning_wrong_column(self):
         """
@@ -237,14 +237,14 @@ class TestLOCF(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that the locf raises a TypeError if the data is passed as an
+        Checks that the locf raises a ValueError if the data is passed as an
         array.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError) as context:
-            df2 = locf(df, columns=['f', 'g', 'z'])
+            df = locf(df, columns=['f', 'g', 'z'])
 
     def test_LOCF_df_inplace_wrong_column(self):
         """
@@ -253,7 +253,7 @@ class TestLOCF(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that the locf raises a TypeError if the data is passed as an
+        Checks that the locf raises a ValueError if the data is passed as an
         array.
         """
         # 1. Arrange

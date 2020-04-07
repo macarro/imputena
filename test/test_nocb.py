@@ -83,7 +83,7 @@ class TestNOCB(unittest.TestCase):
         columns: ['f', 'g']
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 15 NA values, 3 less than the original.
+        returned dataframe contains 15 NA values, 3 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -118,7 +118,7 @@ class TestNOCB(unittest.TestCase):
         fill_trailing: True
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframa contains 14 NA values, 4 less than the original.
+        returned dataframe contains 14 NA values, 4 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -136,7 +136,7 @@ class TestNOCB(unittest.TestCase):
         columns: ['f', 'g']
         fill_trailing: True
 
-        Checks that nocb returns 4 NA values from the specified columns.
+        Checks that nocb removes 4 NA values from the specified columns.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -157,12 +157,12 @@ class TestNOCB(unittest.TestCase):
         returned series contains 1 NA value, 2 less than the original.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        es2 = nocb(es)
+        ser2 = nocb(ser)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 3)
-        self.assertEqual(es2.isna().sum(), 1)
+        self.assertEqual(ser.isna().sum(), 3)
+        self.assertEqual(ser2.isna().sum(), 1)
 
     def test_NOCB_series_inplace(self):
         """
@@ -173,11 +173,11 @@ class TestNOCB(unittest.TestCase):
         Checks that nocb removes 2 NA values from the series.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        nocb(es, inplace=True)
+        nocb(ser, inplace=True)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 1)
+        self.assertEqual(ser.isna().sum(), 1)
 
     def test_NOCB_series_returning_fill_trailing(self):
         """
@@ -190,12 +190,12 @@ class TestNOCB(unittest.TestCase):
         returned series contains 0 NA values.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        es2 = nocb(es, fill_trailing=True)
+        ser2 = nocb(ser, fill_trailing=True)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 3)
-        self.assertEqual(es2.isna().sum(), 0)
+        self.assertEqual(ser.isna().sum(), 3)
+        self.assertEqual(ser2.isna().sum(), 0)
 
     def test_NOCB_series_inplace_fill_trailing(self):
         """
@@ -207,11 +207,11 @@ class TestNOCB(unittest.TestCase):
         Checks that nocb removes all NA values from the series.
         """
         # 1. Arrange
-        es = generate_example_series()
+        ser = generate_example_series()
         # 2. Act
-        nocb(es, fill_trailing=True, inplace=True)
+        nocb(ser, fill_trailing=True, inplace=True)
         # 3. Assert
-        self.assertEqual(es.isna().sum(), 0)
+        self.assertEqual(ser.isna().sum(), 0)
 
     # Negative tests ----------------------------------------------------------
 
@@ -228,7 +228,7 @@ class TestNOCB(unittest.TestCase):
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError) as context:
-            df2 = nocb(data)
+            df = nocb(data)
 
     def test_NOCB_df_returning_wrong_column(self):
         """
@@ -237,14 +237,14 @@ class TestNOCB(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that the nocb raises a TypeError if the data is passed as an
+        Checks that the nocb raises a ValueError if the data is passed as an
         array.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError) as context:
-            df2 = nocb(df, columns=['f', 'g', 'z'])
+            df = nocb(df, columns=['f', 'g', 'z'])
 
     def test_NOCB_df_inplace_wrong_column(self):
         """
@@ -253,7 +253,7 @@ class TestNOCB(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that the nocb raises a TypeError if the data is passed as an
+        Checks that the nocb raises a ValueError if the data is passed as an
         array.
         """
         # 1. Arrange
