@@ -50,7 +50,7 @@ class TestMeanSubstitution(unittest.TestCase):
 
         data: Correct dataframe (divcols)
 
-        Checks that most_frequent removes 8 NA values from the dataframe.
+        Checks that mean_substitution removes 8 NA values from the dataframe.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -66,7 +66,7 @@ class TestMeanSubstitution(unittest.TestCase):
         data: Correct dataframe (divcols)
         method: 'median'
 
-        Checks that most_frequent removes 8 NA values from the dataframe.
+        Checks that mean_substitution removes 8 NA values from the dataframe.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -119,7 +119,7 @@ class TestMeanSubstitution(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g']
 
-        Checks that most_frequent removes 4 NA values from the specified
+        Checks that mean_substitution removes 4 NA values from the specified
         columns.
         """
         # 1. Arrange
@@ -137,7 +137,7 @@ class TestMeanSubstitution(unittest.TestCase):
         columns: ['f', 'g']
         method: 'median'
 
-        Checks that most_frequent removes 4 NA values from the specified
+        Checks that mean_substitution removes 4 NA values from the specified
         columns.
         """
         # 1. Arrange
@@ -191,7 +191,7 @@ class TestMeanSubstitution(unittest.TestCase):
 
         data: Correct Series (example series)
 
-        Checks that most_frequent removes 3 NA values from the series.
+        Checks that mean_substitution removes 3 NA values from the series.
         """
         # 1. Arrange
         ser = generate_example_series()
@@ -207,7 +207,7 @@ class TestMeanSubstitution(unittest.TestCase):
         data: Correct Series (example series)
         method: 'median'
 
-        Checks that most_frequent removes 3 NA values from the series.
+        Checks that mean_substitution removes 3 NA values from the series.
         """
         # 1. Arrange
         ser = generate_example_series()
@@ -224,8 +224,8 @@ class TestMeanSubstitution(unittest.TestCase):
 
         data: array (unsupported type)
 
-        Checks that the most_frequent raises a TypeError if the data is passed
-        as an array.
+        Checks that the mean_substitution raises a TypeError if the data is
+        passed as an array.
         """
         # 1. Arrange
         data = [2, 4, np.nan, 1]
@@ -240,8 +240,8 @@ class TestMeanSubstitution(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that most_frequent raises a ValueError if the data is passed as
-        an array.
+        Checks that mean_substitution raises a ValueError if the data is
+        passed as an array.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -256,8 +256,8 @@ class TestMeanSubstitution(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that most_frequent raises a ValueError if the data is passed as
-        an array.
+        Checks that mean_substitution raises a ValueError if the data is
+        passed as an array.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
