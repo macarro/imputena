@@ -53,8 +53,7 @@ def mean_substitution(data=None, columns=None, method='mean', inplace=False):
             # Raise error if the column name doesn't exist in the data:
             if column not in data.columns:
                 raise ValueError(
-                    '\'' + column + '\' is not a column of the data.'
-                )
+                    '\'' + column + '\' is not a column of the data.')
             # Impute the missing values of the column
             with warnings.catch_warnings():
                 warnings.filterwarnings(

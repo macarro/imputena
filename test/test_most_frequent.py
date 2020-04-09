@@ -7,7 +7,7 @@ from .example_data import *
 
 class TestMostFrequent(unittest.TestCase):
 
-    # Positive tests for data as dataframe ------------------------------------
+    # Positive tests for data as a dataframe ----------------------------------
 
     def test_MF_df_returning(self):
         """
@@ -76,7 +76,7 @@ class TestMostFrequent(unittest.TestCase):
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 14)
 
-    # Positive tests for data as series ---------------------------------------
+    # Positive tests for data as a series -------------------------------------
 
     def test_MF_series_returning(self):
         """

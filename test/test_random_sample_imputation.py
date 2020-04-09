@@ -7,7 +7,7 @@ from .example_data import *
 
 class TestRandomSampleImputation(unittest.TestCase):
 
-    # Positive tests for data as dataframe ------------------------------------
+    # Positive tests for data as a dataframe ----------------------------------
 
     def test_RSI_df_returning(self):
         """
@@ -77,7 +77,7 @@ class TestRandomSampleImputation(unittest.TestCase):
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 14)
 
-    # Positive tests for data as series ---------------------------------------
+    # Positive tests for data as a series -------------------------------------
 
     def test_RSI_series_returning(self):
         """
@@ -136,7 +136,7 @@ class TestRandomSampleImputation(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g', 'z'] ('z' doesn't exist in the data)
 
-        Checks that the random_sample_imputation raises a ValueError if on
+        Checks that the random_sample_imputation raises a ValueError if one
         of the specified columns doesn't exist in the data.
         """
         # 1. Arrange

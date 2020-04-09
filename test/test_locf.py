@@ -7,7 +7,7 @@ from .example_data import *
 
 class TestLOCF(unittest.TestCase):
 
-    # Positive tests for data as dataframe ------------------------------------
+    # Positive tests for data as a dataframe ----------------------------------
 
     def test_LOCF_df_returning(self):
         """
@@ -145,7 +145,7 @@ class TestLOCF(unittest.TestCase):
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 14)
 
-    # Positive tests for data as series ---------------------------------------
+    # Positive tests for data as a series -------------------------------------
 
     def test_LOCF_series_returning(self):
         """

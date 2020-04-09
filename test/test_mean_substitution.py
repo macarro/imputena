@@ -7,7 +7,7 @@ from .example_data import *
 
 class TestMeanSubstitution(unittest.TestCase):
 
-    # Positive tests for data as dataframe ------------------------------------
+    # Positive tests for data as a dataframe ----------------------------------
 
     def test_MS_df_mean_returning(self):
         """
@@ -148,7 +148,7 @@ class TestMeanSubstitution(unittest.TestCase):
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 14)
 
-    # Positive tests for data as series ---------------------------------------
+    # Positive tests for data as a series -------------------------------------
 
     def test_MS_series_mean_returning(self):
         """

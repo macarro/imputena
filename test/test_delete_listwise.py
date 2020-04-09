@@ -7,7 +7,7 @@ from .example_data import *
 
 class TestDeleteListwise(unittest.TestCase):
 
-    # Positive tests for data as dataframe ------------------------------------
+    # Positive tests for data as a dataframe ----------------------------------
 
     def test_delete_listwise_df_returning(self):
         """

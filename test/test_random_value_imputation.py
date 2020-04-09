@@ -7,7 +7,7 @@ from .example_data import *
 
 class TestRandomValueImputation(unittest.TestCase):
 
-    # Positive tests for data as dataframe ------------------------------------
+    # Positive tests for data as a dataframe ----------------------------------
 
     def test_RVI_df_returning(self):
         """
@@ -42,7 +42,7 @@ class TestRandomValueImputation(unittest.TestCase):
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 0)
 
-    # Positive tests for data as series ---------------------------------------
+    # Positive tests for data as a series -------------------------------------
 
     def test_RVI_series_returning(self):
         """
