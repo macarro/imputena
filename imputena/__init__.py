@@ -10,3 +10,4 @@ from .mean_substitution import mean_substitution
 from .constant_value_imputation import constant_value_imputation
 from .random_value_imputation import random_value_imputation
 from .interpolation import interpolation
+from .seasonal_interpolation import seasonal_interpolation

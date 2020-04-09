@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def interpolation(data=None, method='linear', columns=None, inplace=False):
     # Check if data is a series or dataframe:
     if not (isinstance(data, pd.Series) or isinstance(data, pd.DataFrame)):
