@@ -18,7 +18,7 @@ def random_hot_deck_imputation(
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, optional
     :return: The dataframe with random hot deck imputation performed for the
-    incomplete variable or None if inplace=True.
+        incomplete variable or None if inplace=True.
     :rtype: pandas.DataFrame o None
     :raises: TypeError, ValueError
     """

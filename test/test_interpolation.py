@@ -16,7 +16,7 @@ class TestInterpolation(unittest.TestCase):
         data: Correct dataframe (divcols)
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframe contains 13 NA values, 5 less than the original.
+        returned dataframe contains 10 NA values, 8 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -24,7 +24,7 @@ class TestInterpolation(unittest.TestCase):
         df2 = interpolation(df)
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 18)
-        self.assertEqual(df2.isna().sum().sum(), 13)
+        self.assertEqual(df2.isna().sum().sum(), 10)
 
     def test_interpolation_df_inplace(self):
         """
@@ -32,14 +32,14 @@ class TestInterpolation(unittest.TestCase):
 
         data: Correct dataframe (divcols)
 
-        Checks that interpolation removes 5 NA values from the dataframe.
+        Checks that interpolation removes 8 NA values from the dataframe.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act
         interpolation(df, inplace=True)
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 13)
+        self.assertEqual(df.isna().sum().sum(), 10)
 
     def test_interpolation_df_returning_columns(self):
         """
@@ -49,7 +49,7 @@ class TestInterpolation(unittest.TestCase):
         columns: ['f', 'g']
 
         Checks that the original dataframe remains unmodified and that the
-        returned dataframe contains 16 NA values, 2 less than the original.
+        returned dataframe contains 14 NA values, 4 less than the original.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
@@ -57,7 +57,7 @@ class TestInterpolation(unittest.TestCase):
         df2 = interpolation(df, columns=['f', 'g'])
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 18)
-        self.assertEqual(df2.isna().sum().sum(), 16)
+        self.assertEqual(df2.isna().sum().sum(), 14)
 
     def test_interpolation_df_inplace_columns(self):
         """
@@ -66,14 +66,14 @@ class TestInterpolation(unittest.TestCase):
         data: Correct dataframe (divcols)
         columns: ['f', 'g']
 
-        Checks that interpolation removes 2 NA values from the dataframe.
+        Checks that interpolation removes 4 NA values from the dataframe.
         """
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act
         interpolation(df, columns=['f', 'g'], inplace=True)
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 16)
+        self.assertEqual(df.isna().sum().sum(), 14)
 
     # Positive tests for data as a series -------------------------------------
 
@@ -84,7 +84,7 @@ class TestInterpolation(unittest.TestCase):
         data: Correct Series (example series)
 
         Checks that the original series remains unmodified and that the
-        returned series contains 1 NA value, 2 less than the original.
+        returned series contains 0 NA values, 3 less than the original.
         """
         # 1. Arrange
         ser = generate_example_series()
@@ -92,7 +92,7 @@ class TestInterpolation(unittest.TestCase):
         ser2 = interpolation(ser)
         # 3. Assert
         self.assertEqual(ser.isna().sum(), 3)
-        self.assertEqual(ser2.isna().sum(), 1)
+        self.assertEqual(ser2.isna().sum(), 0)
 
     def test_interpolation_series_inplace(self):
         """
@@ -100,14 +100,14 @@ class TestInterpolation(unittest.TestCase):
 
         data: Correct Series (example series)
 
-        Checks that interpolation removes 2 NA values from the series.
+        Checks that interpolation removes 3 NA values from the series.
         """
         # 1. Arrange
         ser = generate_example_series()
         # 2. Act
         interpolation(ser, inplace=True)
         # 3. Assert
-        self.assertEqual(ser.isna().sum(), 1)
+        self.assertEqual(ser.isna().sum(), 0)
 
     # Negative tests ----------------------------------------------------------
 
