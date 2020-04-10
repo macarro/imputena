@@ -113,10 +113,12 @@ def generate_example_series():
     )
 
 
-def ts_airgap():
+def generate_ts_airgap():
     """
     Timeseries describing monthly totals of international airline passengers
-    (presumably in millions) and containing 13 missing values.
+    (presumably in millions) and containing 13 missing values. This series
+    has a strong multiplicative seasonal component.
+
 
     Adapted from the imputeTS R package, with data originating from:
     George E. P. Box, Gwilym M. Jenkins, Gregory C. Reinsel, Greta M. Ljung
@@ -139,4 +141,47 @@ def ts_airgap():
             417, 391, 419, 461, np.nan, 535, 622, 606, 508, 461, 390, 432
         ]),
         index=pd.date_range(start='1949', end='1961', freq='M')
+    )
+
+
+def generate_ts_ausbeer():
+    """
+    Timeseries describing total quarterly beer production in Australia (in
+    megaliters) from 1956:Q1 to 1967:Q3 and containing 9 NA values. This
+    series has a strong additive seasonal component.
+
+    Adapted from the fpp R package (Rob J Hyndman), with data originating from
+    the Australian Bureau of Statistics.
+    """
+    return pd.Series(
+        np.array([
+            284, 213, 227, 308,
+            np.nan, 228, 236, 320,
+            272, np.nan, np.nan, 313,
+            261, 227, 250, 314,
+            286, np.nan, 260, 311,
+            np.nan, 233, 257, 339,
+            279, 250, np.nan, 346,
+            294, np.nan, 278, np.nan,
+            313, np.nan, 300, 370,
+            331, 288, 306, 386,
+            335, 288, 308, 402,
+            353, 316, 325, 405
+        ]),
+        index=pd.date_range(start='1956', end='1968', freq='3M')
+    )
+
+
+def generate_example_df_ts():
+    """
+    Example data frame containing two columns:
+    airgap: 131 integers, 13 NA values
+    empty: 144 NA values
+    """
+    ts_airgap = generate_ts_airgap()
+    return pd.DataFrame(
+        data={
+            'airgap': ts_airgap,
+            'empty': np.nan
+        }
     )
