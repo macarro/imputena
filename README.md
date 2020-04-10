@@ -1,6 +1,7 @@
-# imputena
+# imputena: impute missing values using Python
 
 [![Build Status](https://travis-ci.com/macarro/imputena.svg?branch=master)](https://travis-ci.com/macarro/imputena)
+[![Coverage Status](https://coveralls.io/repos/github/macarro/imputena/badge.svg?branch=master)](https://coveralls.io/github/macarro/imputena?branch=master)
 
 Package that allows both automated and customized treatment of missing values
 in datasets using Python
