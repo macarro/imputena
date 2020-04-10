@@ -5,15 +5,15 @@ def most_frequent(data=None, columns=None, inplace=False):
     """Fills in missing values with the most frequent value (mode) in the
     same column, in case of a dataframe, or in the series as a whole in case
     of a series. If the data is passed as a dataframe, the operation can be
-    applied to all columns, by leaving the parameter columns empty,
-    or to selected columns, passed as an array of strings.
+    applied to all columns, by leaving the parameter columns empty; or to
+    selected columns, passed as an array of strings.
 
-    :param data: The data on which to perform the most frequent imputation
+    :param data: The data on which to perform the most frequent imputation.
     :type data: pandas.Series or pandas.DataFrame
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default False
     :return: The series or dataframe with NA values filled in, or
         None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None

@@ -2,7 +2,10 @@ import pandas as pd
 
 
 def delete_columns(data=None, columns=None, threshold=None, inplace=False):
-    """Drops variables that contain NA values from the data.
+    """Drops variables that contain NA values from the data. If a list of
+    column names is passed, all other columns will be ignored, otherwise
+    all the columns will be considered. If a threshold is given, the function
+    drops those rows which have less non-NA values in the specified columns.
 
     :param data: The data on which to perform the pairwise dropping of
         variables.
@@ -15,7 +18,7 @@ def delete_columns(data=None, columns=None, threshold=None, inplace=False):
         dropped.
     :type threshold: int, optional
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default False
     :return: The dataframe with columns that contain NA dropped or None if
         inplace=True.
     :rtype: pandas.DataFrame or None

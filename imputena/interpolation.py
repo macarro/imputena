@@ -12,14 +12,14 @@ def interpolation(
     :param data: The data on which to perform the interpolation.
     :type data: pandas.Series or pandas.DataFrame
     :param method: The interpolation model to use.
-    :type method: {'linear', 'quadratic', 'cubic'}
+    :type method: {'linear', 'quadratic', 'cubic'}, default 'linear'
     :param direction: Direction in which to interpolate values when the
         interpolation method is linear.
-    :type direction: {'forward', 'backward', 'both'}
+    :type direction: {'forward', 'backward', 'both'}, default 'both'
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default False
     :return: The series or dataframe with NA values interpolated, or
         None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None

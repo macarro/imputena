@@ -3,14 +3,13 @@ import numpy as np
 
 
 def random_value_imputation(
-        data=None, distribution='uniform', min=0, max=1, sigma=1, mu=0,
-        columns=None,
-        inplace=False):
+        data=None, distribution='uniform', vmin=0, vmax=1, sigma=1, mu=0,
+        columns=None, inplace=False):
     """Fills in missing values with a randomly generated number. If
-    distribution is uniform, a float between the min (inclusive) and max (
+    distribution is uniform, a float between vmin (inclusive) and vmax (
     exclusive) will be generated. If distribution is normal, a float from a
     normal distribution specified by sigma and int will be generated. If
-    distribution is integer, an integer between min (inclusive) and max (
+    distribution is integer, an integer between vmin (inclusive) and vmax (
     exclusive) will be drawn from a uniform distribution. If the data is
     passed as a dataframe, the operation can be applied to all columns,
     by leaving the parameter columns empty, or to selected columns, passed
@@ -20,20 +19,20 @@ def random_value_imputation(
     :type data: pandas.Series or pandas.DataFrame
     :param distribution: The distribution from which to draw the random
         values.
-    :type distribution: {'uniform', 'normal', 'integer'}
-    :param min: The lowest value to be drawn
-    :type min: scalar
-    :param max: One above the highest value to be drawn
-    :type max: scalar
+    :type distribution: {'uniform', 'normal', 'integer'}, default 'uniform'
+    :param vmin: The lowest value to be drawn
+    :type vmin: scalar, default 0
+    :param vmax: One above the highest value to be drawn
+    :type vmax: scalar, default 1
     :param sigma: The sigma value tu be used when drawing from a normal
         distribution.
-    :type sigma: scalar
+    :type sigma: scalar, default 1
     :param mu: The mu value tu be used when drawing from a normal distribution.
-    :type mu: scalar
+    :type mu: scalar, default 0
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default False
     :return: The series or dataframe with NA values filled in, or
         None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None
@@ -54,14 +53,15 @@ def random_value_imputation(
         res = data
     else:
         res = data.copy()
+    # Treatment for a DataFrame:
     if isinstance(data, pd.DataFrame):
-        if columns is None :
+        if columns is None:
             columns = data.columns
         num_rows = len(res.index)
         num_cols = len(columns)
         if distribution == 'uniform':
             rand = pd.DataFrame(
-                (max - min) * np.random.rand(num_rows, num_cols) + min,
+                (vmax - vmin) * np.random.rand(num_rows, num_cols) + vmin,
                 columns=columns,
                 index=res.index)
         if distribution == 'normal':
@@ -72,18 +72,19 @@ def random_value_imputation(
         if distribution == 'integer':
             rand = pd.DataFrame(
                 np.random.randint(
-                    low=min, high=max, size=(num_rows, num_cols)),
+                    low=vmin, high=vmax, size=(num_rows, num_cols)),
                 columns=columns,
                 index=res.index)
         res.update(rand, overwrite=False)
+    # Treatment for a Series:
     if isinstance(data, pd.Series):
         def get_random_value():
             if distribution == 'uniform':
-                return (max - min) * np.random.rand() + min
+                return (vmax - vmin) * np.random.rand() + vmin
             if distribution == 'normal':
                 return sigma * np.random.randn() + mu
             if distribution == 'integer':
-                return np.random.randint(low=min, high=max, size=(1, 1))
+                return np.random.randint(low=vmin, high=vmax, size=(1, 1))
         if inplace:
             data.loc[:] = res.apply(
                 lambda item: get_random_value() if pd.isnull(item) else item)

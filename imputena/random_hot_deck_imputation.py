@@ -5,7 +5,11 @@ import numpy as np
 def random_hot_deck_imputation(
         data=None, incomplete_variable=None, deck_variables=None,
         inplace=False):
-    """Performs random hot deck imputation on the data.
+    """Performs random hot deck imputation on the data. Missing values receive
+    a valid value from a donor randomly chosen from a pool. The pool is
+    different for each row containing a missing value in incomplete_variable
+    and consists of all rows which coincide in value with the incomplete row
+    for all of the columns in deck_variables.
 
     :param data: The data on which to perform the random hot deck imputation.
     :type data: pandas.DataFrame
@@ -16,7 +20,7 @@ def random_hot_deck_imputation(
         for these variables.
     :type deck_variables: array-like
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default False
     :return: The dataframe with random hot deck imputation performed for the
         incomplete variable or None if inplace=True.
     :rtype: pandas.DataFrame o None

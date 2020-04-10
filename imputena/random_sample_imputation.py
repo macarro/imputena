@@ -13,7 +13,7 @@ def random_sample_imputation(data=None, columns=None, inplace=False):
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default False
     :return: The series or dataframe with NA values filled in, or
         None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None

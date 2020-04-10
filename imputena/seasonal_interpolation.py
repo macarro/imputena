@@ -17,16 +17,16 @@ def seasonal_interpolation(
     :param data: The data on which to perform the seasonal interpolation.
     :type data: pandas.Series or pandas.DataFrame
     :param dec_model: The decomposition model to use.
-    :type dec_model: {'multiplicative', 'additive'}
+    :type dec_model: {'multiplicative', 'additive'}, default 'multiplicative'
     :param int_method: The interpolation model to use.
     :type int_method: {'linear', 'quadratic', 'cubic'}
     :param int_direction: Direction in which to interpolate values when the
         interpolation method is linear.
-    :type int_direction: {'forward', 'backward', 'both'}
+    :type int_direction: {'forward', 'backward', 'both'}, default 'both'
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default 0
     :return: The series or dataframe with NA values interpolated, or
         None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None

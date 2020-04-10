@@ -2,21 +2,21 @@ import pandas as pd
 import warnings
 
 
-def mean_substitution(data=None, columns=None, method='mean', inplace=False):
+def mean_substitution(data=None, method='mean', columns=None, inplace=False):
     """Fills in missing values with the average value of the same column,
     in case of a dataframe, or of the series as a whole in case of a series. If
     the data is passed as a dataframe, the operation can be applied to all
     columns, by leaving the parameter columns empty, or to selected columns,
     passed as an array of strings.
 
-    :param data: The data on which to perform the mean substitution
+    :param data: The data on which to perform the mean substitution.
     :type data: pandas.Series or pandas.DataFrame
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
-    :param method: Method to use to calculate the average
-    :type method: {'mean', 'median'}
+    :param method: Method to use to calculate the average.
+    :type method: {'mean', 'median'}, default 'mean'
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default False
     :return: The series or dataframe with NA values filled in, or
         None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None

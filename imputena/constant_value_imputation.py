@@ -1,8 +1,7 @@
 import pandas as pd
 
 
-def constant_value_imputation(
-        data=None, value=0, columns=None, inplace=False):
+def constant_value_imputation(data=None, value=0, columns=None, inplace=False):
     """Fills in missing values with the constant value given. If the data is
     passed as a dataframe, the operation can be applied to all columns,
     by leaving the parameter columns empty, or to selected columns, passed
@@ -14,11 +13,11 @@ def constant_value_imputation(
         not set, the value can be a dict/Series/DataFrame of values specifying
         which value to use for each index (for a Series) or column (for a
         DataFrame). Values not in the dict/Series/DataFrame will not be filled.
-    :type value: scalar, dict, Series, or DataFrame
+    :type value: scalar, dict, Series, or DataFrame, default 0
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, optional
+    :type inplace: bool, default False
     :return: The series or dataframe with NA values filled in, or
         None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None
