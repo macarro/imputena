@@ -7,6 +7,6 @@ install:
   - pip install .
   - pip install coveralls
 script:
-  - coverage --source=./imputena run -m unittest
+  - coverage run --source=./imputena -m unittest
 after_success:
     coveralls
