@@ -5,5 +5,8 @@ python:
   - "3.8"
 install:
   - pip install .
+  - pip install coveralls
 script:
-  - python -m unittest
+  - coverage run -m unittest
+after_success:
+    coveralls
