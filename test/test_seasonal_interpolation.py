@@ -18,8 +18,8 @@ class TestSeasonalInterpolation(unittest.TestCase):
         The data frame (example_df_ts) contains 144+13 NA values.
         seasonal_interpolation() should impute 13 of them.
 
-        Checks that the original series remains unmodified and that the
-        returned series contains 144 NA values.
+        Checks that the original data frame remains unmodified and that the
+        returned data frame contains 144 NA values.
         """
         # 1. Arrange
         df = generate_example_df_ts()
@@ -215,7 +215,7 @@ class TestSeasonalInterpolation(unittest.TestCase):
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError):
-            df2 = seasonal_interpolation(data)
+            df = seasonal_interpolation(data)
 
     def test_SI_df_wrong_column(self):
         """
@@ -231,4 +231,4 @@ class TestSeasonalInterpolation(unittest.TestCase):
         df = generate_example_df_ts()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            seasonal_interpolation(df, columns=['z'])
+            df2 = seasonal_interpolation(df, columns=['z'])
