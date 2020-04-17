@@ -25,7 +25,6 @@ setuptools.setup(
         'pandas',
         'numpy',
         'statsmodels',
-        'sklearn',
-        'logging'
+        'sklearn'
     ],
 )
