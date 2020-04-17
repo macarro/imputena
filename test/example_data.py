@@ -185,3 +185,17 @@ def generate_example_df_ts():
             'empty': np.nan
         }
     )
+
+
+def generate_example_df_reg():
+    """
+    Example dataframe to be used to test linear regression.
+
+    The dependency between the variables is:
+    dep = 0.2 * pred1 + 3 * pred2
+    """
+    return pd.DataFrame({
+        'pred1': np.array([20, 30, 40, 50, 60, 70, np.nan]),
+        'pred2': np.array([2, 1, 3, 1, 1, 3, 1]),
+        'dep': np.array([10, 9, 17, 13, 15, np.nan, np.nan])
+    }, index=list([x for x in range(1, 8)]))

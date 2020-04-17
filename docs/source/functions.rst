@@ -52,3 +52,7 @@ Interpolation
 Interpolation with seasonal adjustment
 --------------------------------------
 .. autofunction:: imputena.seasonal_interpolation
+
+Linear regression imputation
+----------------------------
+.. autofunction:: imputena.linear_regression
