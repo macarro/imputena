@@ -47,10 +47,10 @@ def linear_regression(data=None, dependent=None, predictors=[], inplace=False):
     variables.append(dependent)
     data_pairwise_deleted.dropna(subset=variables, inplace=True)
     # Calculate the regression:
-    X = data_pairwise_deleted[predictors]
+    x = data_pairwise_deleted[predictors]
     y = data_pairwise_deleted[dependent]
     model = linear_model.LinearRegression()
-    model.fit(X, y)
+    model.fit(x, y)
     # Extract the regression parameters from the model
     intercept = model.intercept_
     coefs = model.coef_
