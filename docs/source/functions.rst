@@ -60,3 +60,7 @@ Linear regression imputation
 Stochastic regression imputation
 ----------------------------
 .. autofunction:: imputena.stochastic_regression
+
+Logistic regression imputation
+----------------------------
+.. autofunction:: imputena.logistic_regression

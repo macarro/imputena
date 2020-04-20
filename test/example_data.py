@@ -199,3 +199,14 @@ def generate_example_df_reg():
         'pred2': np.array([2, 1, 3, 1, 1, 3, 1]),
         'dep': np.array([10, 9, 17, 13, 15, np.nan, np.nan])
     }, index=list([x for x in range(1, 8)]))
+
+
+def generate_example_df_categorical():
+    """
+    Example dataframe with a categorical column.
+    """
+    return pd.DataFrame({
+        'age': np.array([15, 20, 35, 64, 70, 88, np.nan]),
+        'active': np.array([0.8, 0.7, 0.9, 0.3, 0.1, np.nan, 0.9]),
+        'healthy': ['Yes', 'No', 'Yes', 'No', 'No', None, 'Yes']
+    }, index=list([x for x in range(1, 8)]))
