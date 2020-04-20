@@ -64,7 +64,7 @@ class TestLinearRegression(unittest.TestCase):
         with self.assertRaises(TypeError):
             df = linear_regression(data)
 
-    def test_LR_df_wrong_dependent(self):
+    def test_LR_wrong_dependent(self):
         """
         Negative test
 
@@ -80,7 +80,7 @@ class TestLinearRegression(unittest.TestCase):
         with self.assertRaises(ValueError):
             df2 = linear_regression(df, 'z', ['pred1', 'pred2'])
 
-    def test_LR_df_wrong_predictor(self):
+    def test_LR_wrong_predictor(self):
         """
         Negative test
 
