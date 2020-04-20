@@ -17,7 +17,8 @@ def stochastic_regression(data=None, dependent=None, predictors=[],
     If, in the same row as a missing value in the dependent variable the
     value for any predictor variable is missing, that row does not get imputed.
 
-    :param data: The data on which to perform the linear regression imputation.
+    :param data: The data on which to perform the stochastic regression
+        imputation.
     :type data: pandas.DataFrame
     :param dependent: The dependent variable in which the missing values
         should be imputed.
@@ -27,8 +28,8 @@ def stochastic_regression(data=None, dependent=None, predictors=[],
     :type predictors: array-like
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, default False
-    :return: The dataframe with linear regression imputation performed for the
-        incomplete variable or None if inplace=True.
+    :return: The dataframe with stochastic regression imputation performed
+        for the incomplete variable or None if inplace=True.
     :rtype: pandas.DataFrame o None
     :raises: TypeError, ValueError
     """
