@@ -6,6 +6,7 @@
 
 * Linear regression imputation
 * Stochastic regression imputation
+* Logistic regression imputation
 
 ## [0.1](https://github.com/macarro/imputena/releases/tag/v0.1) (2020-04-12)
 
