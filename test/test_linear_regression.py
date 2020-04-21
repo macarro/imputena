@@ -1,4 +1,5 @@
 import unittest
+import logging
 
 from imputena import linear_regression
 
@@ -6,6 +7,12 @@ from .example_data import *
 
 
 class TestLinearRegression(unittest.TestCase):
+
+    def setUp(self):
+        # Uncomment the following line to show debug and info logs
+        # logging.getLogger().setLevel(logging.DEBUG)
+        logging.basicConfig(format='%(message)s')
+        logging.info("\n" + self._testMethodName)
 
     # Positive tests ----------------------------------------------------------
 
@@ -16,10 +23,10 @@ class TestLinearRegression(unittest.TestCase):
         data: Correct data frame (example_df_reg)
 
         The data frame (example_df_reg) contains 3 NA values.
-        linear_regression() should impute one of them.
+        linear_regression() should impute 2 of them.
 
         Checks that the original series remains unmodified and that the
-        returned series contains 2 NA values.
+        returned series contains 1 NA values.
         """
         # 1. Arrange
         df = generate_example_df_reg()
@@ -27,7 +34,8 @@ class TestLinearRegression(unittest.TestCase):
         df2 = linear_regression(df, 'dep', ['pred1', 'pred2'])
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 3)
-        self.assertEqual(df2.isna().sum().sum(), 2)
+        self.assertEqual(df2.isna().sum().sum(), 1)
+        print("\n")
 
     def test_LR_inplace(self):
         """
@@ -36,16 +44,16 @@ class TestLinearRegression(unittest.TestCase):
         data: Correct data frame (example_df_reg)
 
         The data frame (example_df_reg) contains 3 NA values.
-        linear_regression() should impute one of them.
+        linear_regression() should impute 2 of them.
 
-        Checks that the data frame contains 2 NA values after the operation.
+        Checks that the data frame contains 1 NA values after the operation.
         """
         # 1. Arrange
         df = generate_example_df_reg()
         # 2. Act
         linear_regression(df, 'dep', ['pred1', 'pred2'], inplace=True)
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 2)
+        self.assertEqual(df.isna().sum().sum(), 1)
 
     # Negative tests ----------------------------------------------------------
 
