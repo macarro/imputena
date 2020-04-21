@@ -201,6 +201,40 @@ def generate_example_df_reg():
     }, index=list([x for x in range(1, 8)]))
 
 
+def generate_df_sales():
+    """
+    Example dataframe.
+
+    In the complete dataset, the relationship between year, advertising and
+    sales is roughly described by the following regression equation:
+    'sales' = -91945.21814713 + 13.98961204*'advertising' + 46.6003816*'year'
+
+    The dataframe contains 8 NA values.
+
+    Representation:
+
+          year  advertising   sales
+    1      NaN          NaN     NaN
+    2   1981.0         23.0   651.0
+    3   1982.0         26.0   762.0
+    4      NaN         30.0     NaN
+    5   1984.0         34.0  1063.0
+    6   1985.0          NaN     NaN
+    7   1986.0         48.0  1298.0
+    8   1987.0         52.0  1421.0
+    9   1988.0         57.0  1440.0
+    10  1989.0         58.0     NaN
+    """
+    return pd.DataFrame({
+        'year': np.array(
+            [np.nan, 1981, 1982, np.nan, 1984, 1985, 1986, 1987, 1988, 1989]),
+        'advertising': np.array(
+            [np.nan, 23, 26, 30, 34, np.nan, 48, 52, 57, 58]),
+        'sales': np.array(
+            [np.nan, 651, 762, np.nan, 1063, np.nan, 1298, 1421, 1440, np.nan])
+    }, index=list([x for x in range(1, 11)]))
+
+
 def generate_example_df_categorical():
     """
     Example dataframe with a categorical column.

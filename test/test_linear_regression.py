@@ -20,40 +20,62 @@ class TestLinearRegression(unittest.TestCase):
         """
         Positive test
 
-        data: Correct data frame (example_df_reg)
+        data: Correct data frame (sales)
 
-        The data frame (example_df_reg) contains 3 NA values.
-        linear_regression() should impute 2 of them.
+        The data frame sales contains 4 NA values in the column 'sales'.
+        linear_regression() should impute 3 of them.
 
         Checks that the original series remains unmodified and that the
-        returned series contains 1 NA values.
+        returned series contains 1 NA value in the column 'sales'.
         """
         # 1. Arrange
-        df = generate_example_df_reg()
+        df = generate_df_sales()
         # 2. Act
-        df2 = linear_regression(df, 'dep', ['pred1', 'pred2'])
+        df2 = linear_regression(df, 'sales', ['advertising', 'year'])
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 3)
-        self.assertEqual(df2.isna().sum().sum(), 1)
-        print("\n")
+        self.assertEqual(df['sales'].isna().sum().sum(), 4)
+        self.assertEqual(df2['sales'].isna().sum().sum(), 1)
 
     def test_LR_inplace(self):
         """
         Positive test
 
-        data: Correct data frame (example_df_reg)
+        data: Correct data frame (sales)
 
-        The data frame (example_df_reg) contains 3 NA values.
-        linear_regression() should impute 2 of them.
+        The data frame sales contains 4 NA values in the column 'sales'.
+        linear_regression() should impute 3 of them.
 
-        Checks that the data frame contains 1 NA values after the operation.
+        Checks that the data frame contains 1 NA value in the column 'sales'
+        after the operation.
         """
         # 1. Arrange
-        df = generate_example_df_reg()
+        df = generate_df_sales()
         # 2. Act
-        linear_regression(df, 'dep', ['pred1', 'pred2'], inplace=True)
+        linear_regression(df, 'sales', ['advertising', 'year'], inplace=True)
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 1)
+        self.assertEqual(df['sales'].isna().sum().sum(), 1)
+
+    def test_LR_complete(self):
+        """
+        Positive test
+
+        data: Correct data frame (sales)
+        regressions: 'complete'
+
+        The data frame sales contains 4 NA values in the column 'sales'.
+        linear_regression() should impute 1 of them.
+
+        Checks that the original series remains unmodified and that the
+        returned series contains 3 NA value in the column 'sales'.
+        """
+        # 1. Arrange
+        df = generate_df_sales()
+        # 2. Act
+        df2 = linear_regression(
+            df, 'sales', ['advertising', 'year'], 'complete')
+        # 3. Assert
+        self.assertEqual(df['sales'].isna().sum().sum(), 4)
+        self.assertEqual(df2['sales'].isna().sum().sum(), 3)
 
     # Negative tests ----------------------------------------------------------
 
@@ -76,30 +98,47 @@ class TestLinearRegression(unittest.TestCase):
         """
         Negative test
 
-        data: Correct data frame (example_df_reg)
-        dependent: 'z' (not a column of example_df_reg)
+        data: Correct data frame (sales)
+        dependent: 'z' (not a column of sales)
 
         Checks that the function raises a ValueError if the column specified as
         the dependent variable doesn't exist in the data.
         """
         # 1. Arrange
-        df = generate_example_df_reg()
+        df = generate_df_sales()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            df2 = linear_regression(df, 'z', ['pred1', 'pred2'])
+            df2 = linear_regression(df, 'z', ['advertising', 'year'])
 
     def test_LR_wrong_predictor(self):
         """
         Negative test
 
-        data: Correct data frame (example_df_reg)
-        predictors: ['pred1', 'z'] ('z' is not a column of example_df_reg)
+        data: Correct data frame (sales)
+        predictors: ['advertising', 'z'] ('z' is not a column of sales)
 
-        Checks that the function raises a ValueError if one of the column s
+        Checks that the function raises a ValueError if one of the column
         specified as the predictor variables doesn't exist in the data.
         """
         # 1. Arrange
-        df = generate_example_df_reg()
+        df = generate_df_sales()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            df2 = linear_regression(df, 'dep', ['pred1', 'z'])
+            df2 = linear_regression(df, 'sales', ['advertising', 'z'])
+
+    def test_LR_wrong_regressions(self):
+        """
+        Negative test
+
+        data: Correct data frame (sales)
+        regressions: 'z' (not a valid value)
+
+        Checks that the function raises a ValueError if the value passed for
+        the parameter regressions is not valid.
+        """
+        # 1. Arrange
+        df = generate_df_sales()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError):
+            df2 = linear_regression(
+                df, 'sales', ['advertising', 'year'], 'z')
