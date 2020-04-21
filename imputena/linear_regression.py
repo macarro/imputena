@@ -5,7 +5,7 @@ import logging
 
 
 def linear_regression(
-        data=None, dependent=None, predictors=[], regressions='available',
+        data=None, dependent=None, predictors=None, regressions='available',
         noise=False, inplace=False):
     """Performs simple or multiple linear regression imputation on the data.
     First, the regression equation for the dependent variable given the
@@ -55,6 +55,11 @@ def linear_regression(
     if dependent not in data.columns:
         raise ValueError(
             '\'' + dependent + '\' is not a column of the data.')
+    # If predictors is None, all variables except for the dependent one are
+    # considered predictors:
+    if predictors is None:
+        predictors = list(data.columns)
+        predictors.remove(dependent)
     # Check if each of the predictor variables is actually a column of the
     # dataframe:
     for column in predictors:
