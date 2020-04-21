@@ -86,8 +86,8 @@ def linear_regression(
             it_predictors))
         # Perform iteration:
         res.loc[:, :] = linear_regression_iter(
-            res, dependent, list(it_predictors), limited_predictors_combs,
-            noise)
+            res, dependent, list(it_predictors), noise,
+            limited_predictors_combs)
         # Update predictor combinations done and to do
         predictors_combs_done.append(it_predictors)
         if do_available_regressions:
