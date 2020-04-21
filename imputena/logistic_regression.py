@@ -3,7 +3,7 @@ from sklearn import linear_model
 
 
 def logistic_regression(
-        data=None, dependent=None, predictors=[], inplace=False):
+        data=None, dependent=None, predictors=None, inplace=False):
     """Performs logistic regression imputation on the data. First, the
     regression equation for the dependent variable given the predictor
     variables is computed. For this step, all rows that contain a missing
@@ -36,6 +36,11 @@ def logistic_regression(
     if dependent not in data.columns:
         raise ValueError(
             '\'' + dependent + '\' is not a column of the data.')
+    # If predictors is None, all variables except for the dependent one are
+    # considered predictors:
+    if predictors is None:
+        predictors = list(data.columns)
+        predictors.remove(dependent)
     # Check if each of the predictor variables is actually a column of the
     # dataframe:
     for column in predictors:
