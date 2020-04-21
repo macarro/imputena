@@ -12,5 +12,4 @@ from .random_value_imputation import random_value_imputation
 from .interpolation import interpolation
 from .seasonal_interpolation import seasonal_interpolation
 from .linear_regression import linear_regression
-from .stochastic_regression import stochastic_regression
 from .logistic_regression import logistic_regression

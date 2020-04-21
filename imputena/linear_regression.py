@@ -1,11 +1,12 @@
 import pandas as pd
+import numpy as np
 from sklearn import linear_model
 import logging
 
 
 def linear_regression(
         data=None, dependent=None, predictors=[], regressions='available',
-        inplace=False):
+        noise=False, inplace=False):
     """Performs simple or multiple linear regression imputation on the data.
     First, the regression equation for the dependent variable given the
     predictor variables is computed. For this step, all rows that contain a
@@ -17,7 +18,11 @@ def linear_regression(
     predictors in calculated just to impute those values where the
     predictor(s) are missing. This behavior can be changed by assigning to
     the parameter regressions the value 'complete'. In this case, rows in
-    which a predictor variable is missing do not get imputed.
+    which a predictor variable is missing do not get imputed. If stochastic
+    regression imputation should be performed, set noise=True. In this
+    case, a random value is chosen from a normal distribution with the width
+    of the standard error of the regression model and added to the imputed
+    value.
 
     :param data: The data on which to perform the linear regression imputation.
     :type data: pandas.DataFrame
@@ -32,7 +37,10 @@ def linear_regression(
         missing values themselves. If 'complete': Only impute with a
         regression model based on all predictors and leave missing values in
         rows in which some predictor value is missing itself unimputed.
-    :type regressions: {'available', 'complete'}, default 'both'
+    :type regressions: {'available', 'complete'}, default 'available'
+    :param noise: Whether to add noise to the imputed values (stochastic
+        regression imputation)
+    :type noise: bool, default False
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, default False
     :return: The dataframe with linear regression imputation performed for the
@@ -78,7 +86,8 @@ def linear_regression(
             it_predictors))
         # Perform iteration:
         res.loc[:, :] = linear_regression_iter(
-            res, dependent, list(it_predictors), limited_predictors_combs)
+            res, dependent, list(it_predictors), limited_predictors_combs,
+            noise)
         # Update predictor combinations done and to do
         predictors_combs_done.append(it_predictors)
         if do_available_regressions:
@@ -95,7 +104,7 @@ def linear_regression(
 
 
 def linear_regression_iter(
-        data, dependent, predictors, limited_predictors_combs):
+        data, dependent, predictors, noise, limited_predictors_combs):
     """Auxiliary function that performs (simple or multiple) linear
     regression on the data, for the dependent column only. In rows that
     contain a missing value for any predictor variable, the value of the
@@ -110,6 +119,9 @@ def linear_regression_iter(
     :param predictors: The predictor variables on which the dependent variable
         is dependent.
     :type predictors: array-like
+    :param noise: Whether to add noise to the imputed value (stochastic
+        regression imputation)
+    :type noise: bool, default False
     :param limited_predictors_combs: Reference to the set which contains all
         limited predictor combinations that are necessary to use because
         some predictor had a missing value in some row.
@@ -136,16 +148,19 @@ def linear_regression_iter(
     for idx, coef in enumerate(coefs):
         eq += ' + ' + str(coef) + '*' + predictors[idx]
     logging.info('Regression equation: ' + eq)
+    # Calculate standard error:
+    std_error = (model.predict(x) - y).std()
+    logging.info('Standard error: ' + str(std_error))
     # Implementation using apply:
     return data.apply(
         lambda row: get_imputed_row(
-            row, dependent, predictors, intercept, coefs,
+            row, dependent, predictors, intercept, coefs, noise, std_error,
             limited_predictors_combs),
         axis=1, result_type='broadcast')
 
 
 def get_imputed_row(
-        row, dependent, predictors, intercept, coefs,
+        row, dependent, predictors, intercept, coefs, noise, std_error,
         limited_predictors_combs):
     """Auxiliary function that receives a row of a DataFrame and returns the
     same row. If the row contains a missing value for the dependent variable,
@@ -165,6 +180,12 @@ def get_imputed_row(
     :param coefs:  The coefficients of the regression equation, in the same
         order as the predictors.
     :type coefs: array-like,
+    :param noise: Whether to add noise to the imputed value (stochastic
+        regression imputation)
+    :type noise: bool, default False
+    :param std_error: The standard error of the regression model. Required
+        if noise=True
+    :type std_error: scalar
     :param limited_predictors_combs: Reference to the set which contains all
         limited predictor combinations that are necessary to use because
         some predictor had a missing value in some row.
@@ -191,5 +212,8 @@ def get_imputed_row(
             value = intercept
             for idx, coef in enumerate(coefs):
                 value += coef * row[predictors[idx]]
+            # If noise == True, add noise (stochastic regression imputation)
+            if noise:
+                value += std_error * np.random.randn()
             res[dependent] = value
     return res

@@ -77,6 +77,28 @@ class TestLinearRegression(unittest.TestCase):
         self.assertEqual(df['sales'].isna().sum().sum(), 4)
         self.assertEqual(df2['sales'].isna().sum().sum(), 3)
 
+    def test_LR_noise(self):
+        """
+        Positive test
+
+        data: Correct data frame (sales)
+        noise: True
+
+        The data frame sales contains 4 NA values in the column 'sales'.
+        linear_regression() should impute 3 of them.
+
+        Checks that the original series remains unmodified and that the
+        returned series contains 1 NA value in the column 'sales'.
+        """
+        # 1. Arrange
+        df = generate_df_sales()
+        # 2. Act
+        df2 = linear_regression(
+            df, 'sales', ['advertising', 'year'], noise=True)
+        # 3. Assert
+        self.assertEqual(df['sales'].isna().sum().sum(), 4)
+        self.assertEqual(df2['sales'].isna().sum().sum(), 1)
+
     # Negative tests ----------------------------------------------------------
 
     def test_LR_wrong_type(self):
