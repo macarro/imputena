@@ -41,6 +41,35 @@ def linear_regression(data=None, dependent=None, predictors=[], inplace=False):
         if column not in data.columns:
             raise ValueError(
                 '\'' + column + '\' is not a column of the data.')
+    # Perform the operation:
+    if inplace:
+        data.loc[:, :] = linear_regression_iter(data, dependent, predictors)
+    else:
+        res = linear_regression_iter(data, dependent, predictors)
+    if not inplace:
+        return res
+
+
+def linear_regression_iter(
+        data=None, dependent=None, predictors=[]):
+    """Auxiliary function that performs (simple or multiple) linear
+    regression on the data, for the dependent column only. In rows that
+    contain a missing value for any predictor variable, the value of the
+    dependent variable does not get imputed. The operation is always
+    performed on a copy of the data, which is returned.
+
+    :param data: The data on which to perform the linear regression imputation.
+    :type data: pandas.DataFrame
+    :param dependent: The dependent variable in which the missing values
+        should be imputed.
+    :type dependent: String
+    :param predictors: The predictor variables on which the dependent variable
+        is dependent.
+    :type predictors: array-like
+    :return: A copy of the dataframe with linear regression imputation
+        performed for the incomplete variable.
+    :rtype: pandas.DataFrame o None
+    """
     # Perform pairwise deletion before calculating the regression
     data_pairwise_deleted = data.copy()
     variables = predictors.copy()
@@ -60,21 +89,10 @@ def linear_regression(data=None, dependent=None, predictors=[], inplace=False):
         eq += ' + ' + str(coef) + '*' + predictors[idx]
     logging.info('Regression equation: ' + eq)
     # Implementation using apply:
-    if inplace:
-        data.loc[:, :] = data.apply(
-            lambda row: get_imputed_row(
-                row, dependent, predictors, intercept, coefs),
-            axis=1, result_type='broadcast')
-    else:
-        res = data.apply(
-            lambda row: get_imputed_row(
-                row, dependent, predictors, intercept, coefs),
-            axis=1, result_type='broadcast')
-        # Return the imputed data, or None if inplace:
-        if inplace:
-            return None
-        else:
-            return res
+    return data.apply(
+        lambda row: get_imputed_row(
+            row, dependent, predictors, intercept, coefs),
+        axis=1, result_type='broadcast')
 
 
 def get_imputed_row(row, dependent, predictors, intercept, coefs):
