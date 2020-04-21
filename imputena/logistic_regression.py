@@ -52,7 +52,6 @@ def logistic_regression(
     y = data_pairwise_deleted[dependent]
     model = linear_model.LogisticRegression()
     model.fit(x, y)
-    print(type(model))
     # Implementation using apply:
     if inplace:
         data.loc[:, :] = data.apply(
