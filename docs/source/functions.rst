@@ -53,13 +53,9 @@ Interpolation with seasonal adjustment
 --------------------------------------
 .. autofunction:: imputena.seasonal_interpolation
 
-Linear regression imputation
+Linear and stochastic regression imputation
 ----------------------------
 .. autofunction:: imputena.linear_regression
-
-Stochastic regression imputation
-----------------------------
-.. autofunction:: imputena.stochastic_regression
 
 Logistic regression imputation
 ----------------------------
