@@ -92,7 +92,7 @@ class TestRandomValueImputation(unittest.TestCase):
         # 1. Arrange
         ser = generate_example_series()
         # 2. Act & Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             random_value_imputation(ser, columns=['z'])
 
     def test_RVI_df_invalid_distribution(self):
@@ -108,10 +108,5 @@ class TestRandomValueImputation(unittest.TestCase):
         # 1. Arrange
         ser = generate_example_series()
         # 2. Act & Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             random_value_imputation(ser, '')
-
-
-
-
-

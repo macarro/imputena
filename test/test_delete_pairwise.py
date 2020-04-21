@@ -40,7 +40,7 @@ class TestDeletePairwise(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df()
         # 2. Act
-        df2 = delete_pairwise(df, ['x', 'z'], inplace=True)
+        delete_pairwise(df, ['x', 'z'], inplace=True)
         # 3. Assert
         self.assertTrue(len(df.index) == 3)
 
@@ -57,7 +57,7 @@ class TestDeletePairwise(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df()
         # 2. Act
-        df2 = delete_pairwise(df, ['x', 'z'], threshold=2, inplace=True)
+        delete_pairwise(df, ['x', 'z'], threshold=2, inplace=True)
         # 3. Assert
         self.assertTrue(len(df.index) == 3)
 
@@ -75,7 +75,7 @@ class TestDeletePairwise(unittest.TestCase):
         # 1. Arrange
         ser = generate_example_series()
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
+        with self.assertRaises(TypeError):
             delete_pairwise(ser, ['x', 'z'])
 
     def test_delete_pairwise_no_data(self):
@@ -88,7 +88,7 @@ class TestDeletePairwise(unittest.TestCase):
         """
         # 1. Arrange
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
+        with self.assertRaises(TypeError):
             delete_pairwise(columns=['x', 'z'])
 
     def test_delete_pairwise_wrong_column(self):
@@ -103,7 +103,5 @@ class TestDeletePairwise(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
-            df2 = delete_pairwise(df, ['x', 'a'], inplace=True)
-
-
+        with self.assertRaises(ValueError):
+            delete_pairwise(df, ['x', 'a'], inplace=True)

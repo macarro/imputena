@@ -215,7 +215,7 @@ class TestSeasonalInterpolation(unittest.TestCase):
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError):
-            df = seasonal_interpolation(data)
+            seasonal_interpolation(data)
 
     def test_SI_df_wrong_column(self):
         """
@@ -231,4 +231,4 @@ class TestSeasonalInterpolation(unittest.TestCase):
         df = generate_example_df_ts()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            df2 = seasonal_interpolation(df, columns=['z'])
+            seasonal_interpolation(df, columns=['z'])

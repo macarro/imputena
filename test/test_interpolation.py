@@ -123,8 +123,8 @@ class TestInterpolation(unittest.TestCase):
         # 1. Arrange
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
-            df2 = interpolation(data)
+        with self.assertRaises(TypeError):
+            interpolation(data)
 
     def test_interpolation_df_returning_wrong_column(self):
         """
@@ -139,8 +139,8 @@ class TestInterpolation(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
-            df2 = interpolation(df, columns=['f', 'g', 'z'])
+        with self.assertRaises(ValueError):
+            interpolation(df, columns=['f', 'g', 'z'])
 
     def test_interpolation_df_inplace_wrong_column(self):
         """
@@ -155,5 +155,5 @@ class TestInterpolation(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             interpolation(df, columns=['f', 'g', 'z'], inplace=True)

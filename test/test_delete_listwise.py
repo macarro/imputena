@@ -112,7 +112,7 @@ class TestDeleteListwise(unittest.TestCase):
         # 1. Arrange
         array = [1, 2, 3, 4]
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
+        with self.assertRaises(TypeError):
             delete_listwise(array)
 
     def test_delete_listwise_no_data(self):
@@ -125,7 +125,7 @@ class TestDeleteListwise(unittest.TestCase):
         """
         # 1. Arrange
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
+        with self.assertRaises(TypeError):
             delete_listwise()
 
     def test_delete_listwise_threshold_series(self):
@@ -142,5 +142,5 @@ class TestDeleteListwise(unittest.TestCase):
         # 1. Arrange
         ser = generate_example_series()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             delete_listwise(ser, threshold=2, inplace=True)

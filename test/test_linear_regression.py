@@ -135,7 +135,7 @@ class TestLinearRegression(unittest.TestCase):
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError):
-            df = linear_regression(data)
+            linear_regression(data)
 
     def test_LR_wrong_dependent(self):
         """
@@ -151,7 +151,7 @@ class TestLinearRegression(unittest.TestCase):
         df = generate_df_sales()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            df2 = linear_regression(df, 'z', ['advertising', 'year'])
+            linear_regression(df, 'z', ['advertising', 'year'])
 
     def test_LR_wrong_predictor(self):
         """
@@ -167,7 +167,7 @@ class TestLinearRegression(unittest.TestCase):
         df = generate_df_sales()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            df2 = linear_regression(df, 'sales', ['advertising', 'z'])
+            linear_regression(df, 'sales', ['advertising', 'z'])
 
     def test_LR_wrong_regressions(self):
         """
@@ -183,5 +183,4 @@ class TestLinearRegression(unittest.TestCase):
         df = generate_df_sales()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            df2 = linear_regression(
-                df, 'sales', ['advertising', 'year'], 'z')
+            linear_regression(df, 'sales', ['advertising', 'year'], 'z')

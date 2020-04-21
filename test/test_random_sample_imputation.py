@@ -126,8 +126,8 @@ class TestRandomSampleImputation(unittest.TestCase):
         # 1. Arrange
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
-            df2 = random_sample_imputation(data)
+        with self.assertRaises(TypeError):
+            random_sample_imputation(data)
 
     def test_RSI_df_returning_wrong_column(self):
         """
@@ -142,8 +142,8 @@ class TestRandomSampleImputation(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
-            df2 = random_sample_imputation(df, columns=['f', 'g', 'z'])
+        with self.assertRaises(ValueError):
+            random_sample_imputation(df, columns=['f', 'g', 'z'])
 
     def test_NOCB_df_inplace_wrong_column(self):
         """
@@ -158,5 +158,5 @@ class TestRandomSampleImputation(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             random_sample_imputation(df, columns=['f', 'g', 'z'], inplace=True)

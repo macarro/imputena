@@ -79,7 +79,7 @@ class TestRandomHotDeckImputation(unittest.TestCase):
         # 1. Arrange
         data = generate_example_series()
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
+        with self.assertRaises(TypeError):
             random_hot_deck_imputation(
                 data, incomplete_variable='a', deck_variables=['b'],
                 inplace=True)
@@ -97,7 +97,7 @@ class TestRandomHotDeckImputation(unittest.TestCase):
         # 1. Arrange
         data = generate_example_df_hotdeck()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             random_hot_deck_imputation(
                 data, incomplete_variable='z', deck_variables=['b'],
                 inplace=True)
@@ -115,7 +115,7 @@ class TestRandomHotDeckImputation(unittest.TestCase):
         # 1. Arrange
         data = generate_example_df_hotdeck()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             random_hot_deck_imputation(
                 data, incomplete_variable='a', deck_variables=['b', 'z'],
                 inplace=True)

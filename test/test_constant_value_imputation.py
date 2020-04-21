@@ -127,8 +127,8 @@ class TestConstantValueImputation(unittest.TestCase):
         # 1. Arrange
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
-            df = constant_value_imputation(data)
+        with self.assertRaises(TypeError):
+            constant_value_imputation(data)
 
     def test_CVI_df_returning_wrong_column(self):
         """
@@ -143,8 +143,8 @@ class TestConstantValueImputation(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
-            df2 = constant_value_imputation(df, columns=['f', 'g', 'z'])
+        with self.assertRaises(ValueError):
+            constant_value_imputation(df, columns=['f', 'g', 'z'])
 
     def test_CVI_df_inplace_wrong_column(self):
         """
@@ -159,5 +159,6 @@ class TestConstantValueImputation(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
-            constant_value_imputation(df, columns=['f', 'g', 'z'], inplace=True)
+        with self.assertRaises(ValueError):
+            constant_value_imputation(
+                df, columns=['f', 'g', 'z'], inplace=True)

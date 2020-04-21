@@ -62,7 +62,7 @@ class TestLogisticRegression(unittest.TestCase):
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
         with self.assertRaises(TypeError):
-            df = logistic_regression(data)
+            logistic_regression(data)
 
     def test_logistic_regression_wrong_dependent(self):
         """
@@ -78,7 +78,7 @@ class TestLogisticRegression(unittest.TestCase):
         df = generate_example_df_categorical()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            df2 = logistic_regression(df, 'z', ['age'])
+            logistic_regression(df, 'z', ['age'])
 
     def test_logistic_regression_wrong_predictor(self):
         """
@@ -95,4 +95,4 @@ class TestLogisticRegression(unittest.TestCase):
         df = generate_example_df_categorical()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            df2 = logistic_regression(df, 'healthy', ['age', 'z'])
+            logistic_regression(df, 'healthy', ['age', 'z'])

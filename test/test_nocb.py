@@ -227,8 +227,8 @@ class TestNOCB(unittest.TestCase):
         # 1. Arrange
         data = [2, 4, np.nan, 1]
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
-            df = nocb(data)
+        with self.assertRaises(TypeError):
+            nocb(data)
 
     def test_NOCB_df_returning_wrong_column(self):
         """
@@ -243,8 +243,8 @@ class TestNOCB(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
-            df = nocb(df, columns=['f', 'g', 'z'])
+        with self.assertRaises(ValueError):
+            nocb(df, columns=['f', 'g', 'z'])
 
     def test_NOCB_df_inplace_wrong_column(self):
         """
@@ -259,7 +259,5 @@ class TestNOCB(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             nocb(df, columns=['f', 'g', 'z'], inplace=True)
-
-

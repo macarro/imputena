@@ -105,7 +105,7 @@ class TestDeleteColumns(unittest.TestCase):
         # 1. Arrange
         ser = generate_example_series()
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
+        with self.assertRaises(TypeError):
             delete_columns(ser, inplace=True)
 
     def test_delete_columns_no_data(self):
@@ -118,7 +118,7 @@ class TestDeleteColumns(unittest.TestCase):
         """
         # 1. Arrange
         # 2. Act & 3. Assert
-        with self.assertRaises(TypeError) as context:
+        with self.assertRaises(TypeError):
             delete_columns()
 
     def test_delete_columns_wrong_column(self):
@@ -133,5 +133,5 @@ class TestDeleteColumns(unittest.TestCase):
         # 1. Arrange
         df = generate_example_df_divcols()
         # 2. Act & 3. Assert
-        with self.assertRaises(ValueError) as context:
+        with self.assertRaises(ValueError):
             delete_columns(df, columns=['d', 'e', 'z'], inplace=True)
