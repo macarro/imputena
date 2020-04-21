@@ -74,11 +74,11 @@ def linear_regression(
         # Select iteration predictors
         it_predictors = predictors_combs_todo.pop(0)
         # Log iteration beginning:
-        logging.info('Applying regression imputation with predictors:' + str(
+        logging.info('Applying regression imputation with predictors: ' + str(
             it_predictors))
         # Perform iteration:
         res.loc[:, :] = linear_regression_iter(
-            data, dependent, list(it_predictors), limited_predictors_combs)
+            res, dependent, list(it_predictors), limited_predictors_combs)
         # Update predictor combinations done and to do
         predictors_combs_done.append(it_predictors)
         if do_available_regressions:
@@ -174,6 +174,7 @@ def get_imputed_row(
     """
     res = row.copy()
     if pd.isnull(res[dependent]):
+        # Check whether there are predictors for which the value is NA
         na_predictors = tuple(
             row[predictors][row[predictors].isnull()].index.to_list())
         # If the row contains NA values for one or several predictors,
@@ -181,7 +182,10 @@ def get_imputed_row(
         # to perform regression without them:
         if na_predictors != ():
             limited_predictors = tuple(set(predictors) - set(na_predictors))
-            limited_predictors_combs.add(limited_predictors)
+            # Add the limited_predictors to the set only if the combination
+            # isn't empty:
+            if limited_predictors != ():
+                limited_predictors_combs.add(limited_predictors)
         # If the row doesn't contain missing values for any predictor, impute:
         else:
             value = intercept
