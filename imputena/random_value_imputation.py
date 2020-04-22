@@ -47,7 +47,7 @@ def random_value_imputation(
                          'DataFrame.')
     # Check if the distribution has a valid value:
     if distribution not in ['uniform', 'normal', 'integer']:
-        raise ValueError(distribution + 'is not a supported distribution')
+        raise ValueError(distribution + 'is not a supported distribution.')
     # Assign a reference or copy to res, depending on inplace:
     if inplace:
         res = data
