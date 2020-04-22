@@ -38,21 +38,18 @@ def random_hot_deck_imputation(
     for column in deck_variables:
         if column not in data.columns:
             raise ValueError('\'' + column + '\' is not a column of the data.')
+    # Assign a reference or copy to res, depending on inplace:
+    if inplace:
+        res = data
+    else:
+        res = data.copy()
     # Implementation using a apply:
-    if inplace:
-        data.loc[:, :] = data.apply(
-            lambda row: get_row_with_donation(
-                row, incomplete_variable, deck_variables, data),
-            axis=1, result_type='broadcast')
-    else:
-        res = data.apply(
-            lambda row: get_row_with_donation(
-                row, incomplete_variable, deck_variables, data),
-            axis=1, result_type='broadcast')
-    # Return the imputed data, or None if inplace:
-    if inplace:
-        return None
-    else:
+    res.loc[:, :] = data.apply(
+        lambda row: get_row_with_donation(
+            row, incomplete_variable, deck_variables, data),
+        axis=1, result_type='broadcast')
+    # Return dataframe is the operation is not to be performed inplace:
+    if not inplace:
         return res
 
 
