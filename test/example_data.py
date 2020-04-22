@@ -188,20 +188,6 @@ def generate_example_df_ts():
     )
 
 
-def generate_example_df_reg():
-    """
-    Example dataframe to be used to test linear regression.
-
-    The dependency between the variables is:
-    dep = 0.2 * pred1 + 3 * pred2
-    """
-    return pd.DataFrame({
-        'pred1': np.array([20, 30, 40, 50, 60, 70, np.nan]),
-        'pred2': np.array([2, 1, 3, 1, 1, 3, 1]),
-        'dep': np.array([10, 9, 17, 13, 15, np.nan, np.nan])
-    }, index=list([x for x in range(1, 8)]))
-
-
 def generate_df_sales():
     """
     Example dataframe.
@@ -236,12 +222,70 @@ def generate_df_sales():
     }, index=list([x for x in range(1, 11)]))
 
 
-def generate_example_df_categorical():
+def generate_df_breast_cancer():
     """
-    Example dataframe with a categorical column.
+    Example dataframe used to test logistic regression.
+
+    Adapted from: Breast Cancer Wisconsin (Diagnostic) Data Set (UCI Machine
+    Learning Repository)
+
+    Contains 15 missing values.
+
+        thickness  uniformity  adhesion  size  nucleoli  mitoses class
+    0         1.0         1.0         1   1.0        1        1     B
+    1         1.0         1.0         1   2.0        1        1     B
+    2         8.0         4.0         3   3.0        3        1     B
+    3         4.0         1.0         1   2.0        6        1     B
+    4        10.0         8.0         4   4.0       10        4  None
+    5         5.0         1.0         1   2.0        2        1     B
+    6         NaN        10.0        10   3.0        6        1  None
+    7         3.0         3.0         1   2.0        1        1     B
+    8         3.0         NaN         1   2.0        1        1  None
+    9         2.0         3.0         1   5.0        1        1     B
+    10        NaN         1.0         1   NaN        1        1  None
+    11        5.0         2.0         2   1.0        1        1     B
+    12       10.0         NaN         2   NaN        7        1  None
+    13        7.0         8.0         2   4.0        8        2     M
+    14        8.0         4.0         1   3.0        9        2  None
+    15        1.0         1.0         1   2.0        1        1     B
+    16        4.0         1.0         1   2.0        1        1  None
+    17        1.0         2.0         1   2.0        1        1     B
+    18       10.0         NaN         4   NaN       10        1     M
+    19        1.0         1.0         1   2.0        1        1     B
+    20        3.0         1.0         1   2.0        1        1     B
+    21        5.0         1.0         1   2.0        1        1     B
+    22        4.0         1.0         1   2.0        1        1     B
+    23        8.0         4.0         1   2.0        3        1     M
+    24        8.0         7.0         4   5.0       10        1     M
+    25       10.0         4.0        10   4.0        1        1     M
+    26        8.0         3.0         9   3.0        3        1     M
+    27        8.0        10.0         8   7.0        7        1     M
+    28        6.0         1.0         1   2.0        1        1     B
+    29        4.0         1.0         1   2.0        1        1     B
     """
     return pd.DataFrame({
-        'age': np.array([15, 20, 35, 64, 70, 88, np.nan]),
-        'active': np.array([0.8, 0.7, 0.9, 0.3, 0.1, np.nan, 0.9]),
-        'healthy': ['Yes', 'No', 'Yes', 'No', 'No', None, 'Yes']
-    }, index=list([x for x in range(1, 8)]))
+        'thickness': np.array(
+            [1.0, 1.0, 8.0, 4.0, 10.0, 5.0, np.nan, 3.0, 3.0, 2.0, np.nan, 5.0,
+             10.0, 7.0, 8.0, 1.0, 4.0, 1.0, 10.0, 1.0, 3.0, 5.0, 4.0, 8.0, 8.0,
+             10.0, 8.0, 8.0, 6.0, 4.0]),
+        'uniformity': np.array(
+            [1.0, 1.0, 4.0, 1.0, 8.0, 1.0, 10.0, 3.0, np.nan, 3.0, 1.0, 2.0,
+             np.nan, 8.0, 4.0, 1.0, 1.0, 2.0, np.nan, 1.0, 1.0, 1.0, 1.0, 4.0,
+             7.0, 4.0, 3.0, 10.0, 1.0, 1.0]),
+        'adhesion': np.array(
+            [1, 1, 3, 1, 4, 1, 10, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 4, 1, 1, 1,
+             1, 1, 4, 10, 9, 8, 1, 1]),
+        'size': np.array(
+            [1.0, 2.0, 3.0, 2.0, 4.0, 2.0, 3.0, 2.0, 2.0, 5.0, np.nan, 1.0,
+             np.nan, 4.0, 3.0, 2.0, 2.0, 2.0,np. nan, 2.0, 2.0, 2.0, 2.0, 2.0,
+             5.0, 4.0, 3.0, 7.0, 2.0, 2.0]),
+        'nucleoli': np.array(
+            [1, 1, 3, 6, 10, 2, 6, 1, 1, 1, 1, 1, 7, 8, 9, 1, 1, 1, 10, 1, 1,
+             1, 1, 3, 10, 1, 3, 7, 1, 1]),
+        'mitoses': np.array(
+            [1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1,
+             1, 1, 1, 1, 1, 1, 1, 1]),
+        'class': ['B', 'B', 'B', 'B', None, 'B', None, 'B', None, 'B', None,
+                  'B', None, 'M', None, 'B', None, 'B', 'M', 'B', 'B', 'B',
+                  'B', 'M', 'M', 'M', 'M', 'M', 'B', 'B']
+    })

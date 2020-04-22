@@ -13,39 +13,83 @@ class TestLogisticRegression(unittest.TestCase):
         """
         Positive test
 
-        data: Correct data frame (example_df_categorical)
+        data: Correct data frame (df_breast_cancer)
 
-        The data frame (example_df_categorical) contains 3 NA values.
-        logistic_regression() should impute one of them.
+        The data frame (df_breast_cancer) contains 15 NA values.
+        logistic_regression() should impute 7 of them.
 
         Checks that the original series remains unmodified and that the
-        returned series contains 2 NA values.
+        returned series contains 8 NA values.
         """
         # 1. Arrange
-        df = generate_example_df_categorical()
+        df = generate_df_breast_cancer()
         # 2. Act
-        df2 = logistic_regression(df, 'healthy', ['age'])
+        df2 = logistic_regression(df, 'class', ['thickness', 'uniformity'])
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 3)
-        self.assertEqual(df2.isna().sum().sum(), 2)
+        self.assertEqual(df.isna().sum().sum(), 15)
+        self.assertEqual(df2.isna().sum().sum(), 8)
 
     def test_logistic_regression_inplace(self):
         """
         Positive test
 
-        data: Correct data frame (example_df_categorical)
+        data: Correct data frame (df_breast_cancer)
 
-        The data frame (example_df_categorical) contains 3 NA values.
-        logistic_regression() should impute one of them.
+        The data frame (df_breast_cancer) contains 15 NA values.
+        logistic_regression() should impute 7 of them.
 
-        Checks that the data frame contains 2 NA values after the operation.
+        Checks that the data frame contains 8 NA values after the operation.
         """
         # 1. Arrange
-        df = generate_example_df_categorical()
+        df = generate_df_breast_cancer()
         # 2. Act
-        logistic_regression(df, 'healthy', ['age'], inplace=True)
+        logistic_regression(
+            df, 'class', ['thickness', 'uniformity'], inplace=True)
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 2)
+        self.assertEqual(df.isna().sum().sum(), 8)
+
+    def test_logistic_regression_implicit_predictors(self):
+        """
+        Positive test
+
+        data: Correct data frame (df_breast_cancer)
+        predictors: None
+
+        The data frame (df_breast_cancer) contains 15 NA values.
+        logistic_regression() should impute 7 of them.
+
+        Checks that the original series remains unmodified and that the
+        returned series contains 8 NA values.
+        """
+        # 1. Arrange
+        df = generate_df_breast_cancer()
+        # 2. Act
+        df2 = logistic_regression(df, 'class')
+        # 3. Assert
+        self.assertEqual(df.isna().sum().sum(), 15)
+        self.assertEqual(df2.isna().sum().sum(), 8)
+
+    def test_logistic_regression_complete(self):
+        """
+        Positive test
+
+        data: Correct data frame (df_breast_cancer)
+        regressions: 'complete'
+
+        The data frame (df_breast_cancer) contains 15 NA values.
+        logistic_regression() should impute 3 of them.
+
+        Checks that the original series remains unmodified and that the
+        returned series contains 12 NA values.
+        """
+        # 1. Arrange
+        df = generate_df_breast_cancer()
+        # 2. Act
+        df2 = logistic_regression(
+            df, 'class', ['thickness', 'uniformity'], regressions='complete')
+        # 3. Assert
+        self.assertEqual(df.isna().sum().sum(), 15)
+        self.assertEqual(df2.isna().sum().sum(), 12)
 
     # Negative tests ----------------------------------------------------------
 
@@ -68,31 +112,48 @@ class TestLogisticRegression(unittest.TestCase):
         """
         Negative test
 
-        data: Correct data frame (example_df_categorical)
-        dependent: 'z' (not a column of example_df_categorical)
+        data: Correct data frame (df_breast_cancer)
+        dependent: 'z' (not a column of df_breast_cancer)
 
         Checks that the function raises a ValueError if the column specified as
         the dependent variable doesn't exist in the data.
         """
         # 1. Arrange
-        df = generate_example_df_categorical()
+        df = generate_df_breast_cancer()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            logistic_regression(df, 'z', ['age'])
+            logistic_regression(df, 'z', ['thickness', 'uniformity'])
 
     def test_logistic_regression_wrong_predictor(self):
         """
         Negative test
 
-        data: Correct data frame (example_df_categorical)
-        predictors: ['age', 'z'] ('z' is not a column of
-        example_df_categorical)
+        data: Correct data frame (df_breast_cancer)
+        predictors: ['thickness', 'z'] ('z' is not a column of
+        df_breast_cancer)
 
         Checks that the function raises a ValueError if one of the column s
         specified as the predictor variables doesn't exist in the data.
         """
         # 1. Arrange
-        df = generate_example_df_categorical()
+        df = generate_df_breast_cancer()
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
-            logistic_regression(df, 'healthy', ['age', 'z'])
+            logistic_regression(df, 'class', ['thickness', 'z'])
+
+    def test_logistic_regression_wrong_regressions(self):
+        """
+        Negative test
+
+        data: Correct data frame (df_breast_cancer)
+        regressions: 'z' (not a valid value)
+
+        Checks that the function raises a ValueError if the value passed for
+        the parameter regressions is not valid.
+        """
+        # 1. Arrange
+        df = generate_df_breast_cancer()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError):
+            logistic_regression(
+                df, 'class', ['thickness', 'uniformity'], regressions='z')
