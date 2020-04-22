@@ -39,6 +39,9 @@ def seasonal_interpolation(
     if isinstance(data, pd.Series) and columns is not None:
         raise ValueError(
             'Columns can only be selected if the data is a DataFrame.')
+    # Check if dec_model has a valid value:
+    if dec_model not in ['multiplicative', 'additive']:
+        raise ValueError(dec_model + 'is not a supported decomposition model.')
     # Assign a reference or copy to res, depending on inplace:
     if inplace:
         res = data

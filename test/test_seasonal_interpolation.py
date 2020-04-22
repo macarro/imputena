@@ -232,3 +232,19 @@ class TestSeasonalInterpolation(unittest.TestCase):
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
             seasonal_interpolation(df, columns=['z'])
+
+    def test_SI_wrong_dec_model(self):
+        """
+        Negative test
+
+        data: Correct data frame (example_df_ts)
+        dec_model='z' (not a valid decomposition model)
+
+        Checks that the function raises a ValueError if the value of
+        dec_model is not valid.
+        """
+        # 1. Arrange
+        df = generate_example_df_ts()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError):
+            seasonal_interpolation(df, dec_model='z')

@@ -8,6 +8,11 @@
 * Stochastic regression imputation
 * Logistic regression imputation
 
+### Changed
+
+* `seasonal_interpolation` now raises a ValueError if the value of
+ `dec_model` is not 'multiplicative' or 'additive'.
+
 ## [0.1](https://github.com/macarro/imputena/releases/tag/v0.1) (2020-04-12)
 
 ### Added
