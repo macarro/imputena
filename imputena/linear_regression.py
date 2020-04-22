@@ -111,8 +111,8 @@ def linear_regression(
 def linear_regression_iter(
         data, dependent, predictors, noise, limited_predictors_combs):
     """Auxiliary function that performs (simple or multiple) linear
-    regression on the data, for the dependent column only. In rows that
-    contain a missing value for any predictor variable, the value of the
+    regression imputation on the data, for the dependent column only. In rows
+    that contain a missing value for any predictor variable, the value of the
     dependent variable does not get imputed. The operation is always
     performed on a copy of the data, which is returned.
 
