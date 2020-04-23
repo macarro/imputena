@@ -2,3 +2,6 @@
 .idea/
 __pycache__/
 docs/build/
+build/
+dist/
+imputena.egg-info/
