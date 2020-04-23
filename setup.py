@@ -1,13 +1,34 @@
 import setuptools
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+long_description = """
+This package allows both automated and customized treatment of missing
+values in datasets using Python. The treatments that are implemented in this
+package are:
+
+* Listwise deletion
+* Pairwise deletion
+* Dropping variables
+* Random sample imputation
+* Random hot-deck imputation
+* LOCF
+* NOCB
+* Most frequent substitution
+* Mean and median substitution
+* Constant value imputation
+* Random value imputation
+* Interpolation
+* Interpolation with seasonal adjustment
+* Linear regression imputation
+* Stochastic regression imputation
+* Logistic regression imputation
+
+"""
 
 setuptools.setup(
     name='imputena',
     version='0.2',
     description='Package that allows both automated and customized treatment '
-            'of missing values in datasets using Python',
+            'of missing values in datasets using Python.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(exclude=('test',)),
