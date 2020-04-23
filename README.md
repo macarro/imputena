@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/macarro/imputena.svg?branch=master)](https://travis-ci.com/macarro/imputena)
 [![Coverage Status](https://coveralls.io/repos/github/macarro/imputena/badge.svg?branch=master)](https://coveralls.io/github/macarro/imputena?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/imputena)](https://pypi.org/project/imputena)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/imputena)](https://pypi.org/project/imputena)
 
 This package allows both automated and customized treatment of missing
 values in datasets using Python. The treatments that are implemented in this
