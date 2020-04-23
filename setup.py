@@ -10,7 +10,7 @@ setuptools.setup(
             'of missing values in datasets using Python',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude=('test',)),
     url='http://github.com/macarro/imputena',
     author='Miguel Macarro',
     author_email='migmackle@alum.us.es',
