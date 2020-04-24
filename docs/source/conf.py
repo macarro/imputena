@@ -39,7 +39,7 @@ exclude_patterns = []
 
 # The document name of the “master” document, that is, the document that
 # contains the root toctree directive.
-master_doc = ['index']
+master_doc = 'index'
 
 
 # -- Options for HTML output -------------------------------------------------
