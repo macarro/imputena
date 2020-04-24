@@ -5,9 +5,8 @@
 [![PyPI](https://img.shields.io/pypi/v/imputena)](https://pypi.org/project/imputena)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/imputena)](https://pypi.org/project/imputena)
 
-This package allows both automated and customized treatment of missing
-values in datasets using Python. The treatments that are implemented in this
-package are:
+This Python package allows both automated and customized treatment of missing
+values in datasets. The treatments that are implemented are:
 
 * Listwise deletion
 * Pairwise deletion
@@ -27,6 +26,18 @@ package are:
 * Logistic regression imputation
 
 ## Installation
+
+### Most recent release
+
+To install or update to the most recently published release, run:
+
+```ShellSession
+pip install imputena
+```
+
+This will fetch the release from PyPi and install it with all dependencies.
+
+### Current development version
 
 Clone this repository or download and unzip it. At the project root directory,
 run:
