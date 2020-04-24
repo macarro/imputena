@@ -51,7 +51,8 @@ pip install .
 
 ### View online
 
-The documentation for the latest version is available at [imputena.readthedocs.io](https://imputena.readthedocs.io/en/latest)
+The documentation for the latest version is available at
+[imputena.readthedocs.io](https://imputena.readthedocs.io/en/latest).
 
 ### Generate locally
 
