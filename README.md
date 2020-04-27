@@ -25,6 +25,7 @@ values in datasets. The treatments that are implemented are:
 * Linear regression imputation
 * Stochastic regression imputation
 * Logistic regression imputation
+* K-nearest neighbors imputation
 
 ## Installation
 

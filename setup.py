@@ -21,6 +21,7 @@ package are:
 * Linear regression imputation
 * Stochastic regression imputation
 * Logistic regression imputation
+* K-nearest neighbors imputation
 
 """
 
