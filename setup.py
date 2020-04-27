@@ -55,6 +55,7 @@ setuptools.setup(
         'pandas',
         'numpy',
         'statsmodels',
-        'sklearn'
+        'sklearn',
+        'fancyimpute'
     ],
 )

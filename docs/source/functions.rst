@@ -60,3 +60,7 @@ Linear and stochastic regression imputation
 Logistic regression imputation
 ------------------------------
 .. autofunction:: imputena.logistic_regression
+
+k-nearest neighbors imputation
+------------------------------
+.. autofunction:: imputena.knn
