@@ -45,7 +45,7 @@ def linear_regression(
     :type inplace: bool, default False
     :return: The dataframe with linear regression imputation performed for the
         incomplete variable or None if inplace=True.
-    :rtype: pandas.DataFrame o None
+    :rtype: pandas.DataFrame or None
     :raises: TypeError, ValueError
     """
     # Check if data is a dataframe:

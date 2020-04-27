@@ -19,7 +19,7 @@ def delete_pairwise(data=None, columns=None, threshold=None, inplace=False):
     :type inplace: bool, default False
     :return: The dataframe with all rows containing NA in one or more of the
         specified columns eliminated or None if inplace=True.
-    :rtype: pandas.DataFrame o None
+    :rtype: pandas.DataFrame or None
     :raises: TypeError, ValueError
     """
     # Check that data is a Dataframe:
