@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.impute import KNNImputer
 
 
-def knn(data=None, columns=None, k=5, inplace=False):
+def knn(data=None, columns=None, k=3, inplace=False):
     """Performs k-nearest neighbors imputation on the data. The k nearest
     neighbors or each subject with missing data are chosen and the average
     of their values is used to impute the missing value. The operation can be
@@ -16,7 +16,7 @@ def knn(data=None, columns=None, k=5, inplace=False):
     :type columns: array-like, optional
     :param k: The number of neighbors to which the subject with missing
         values should be compared
-    :type k: int, default 5
+    :type k: int, default 3
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, default False
     :return: The series or dataframe with NA values imputed, or
