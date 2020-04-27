@@ -1,13 +1,5 @@
 import pandas as pd
-import os
-import sys
-import contextlib
-
-# Workaround to prevent Keras from writing an error message on being imported:
-stderr = sys.stderr
-sys.stderr = open(os.devnull, 'w')
-from fancyimpute import KNN
-sys.stderr = stderr
+from sklearn.impute import KNNImputer
 
 
 def knn(data=None, columns=None, k=5, inplace=False):
@@ -41,8 +33,7 @@ def knn(data=None, columns=None, k=5, inplace=False):
     else:
         res = data.copy()
     # Perform KNN
-    with open(os.devnull, "w") as f, contextlib.redirect_stdout(f):
-        knn_out = KNN(k=k).fit_transform(data)
+    knn_out = KNNImputer(n_neighbors=k).fit_transform(data)
     # Treatment for a whole dataframe:
     if columns is None:
         res[:] = knn_out
