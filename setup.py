@@ -26,7 +26,7 @@ package are:
 
 setuptools.setup(
     name='imputena',
-    version='0.2',
+    version='0.3',
     description='Package that allows both automated and customized treatment '
             'of missing values in datasets using Python.',
     long_description=long_description,
