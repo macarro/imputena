@@ -22,7 +22,8 @@ def linear_regression(
     regression imputation should be performed, set noise=True. In this
     case, a random value is chosen from a normal distribution with the width
     of the standard error of the regression model and added to the imputed
-    value.
+    value. If the parameter predictors is omitted, all variables other than
+    the dependent are used as predictors.
 
     :param data: The data on which to perform the linear regression imputation.
     :type data: pandas.DataFrame
@@ -31,7 +32,7 @@ def linear_regression(
     :type dependent: String
     :param predictors: The predictor variables on which the dependent variable
         is dependent.
-    :type predictors: array-like
+    :type predictors: array-like, optional
     :param regressions: If 'available': Impute missing values by modeling a
         regression based on all available predictors if some predictors have
         missing values themselves. If 'complete': Only impute with a

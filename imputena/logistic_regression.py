@@ -17,7 +17,9 @@ def logistic_regression(
     predictors in calculated just to impute those values where the
     predictor(s) are missing. This behavior can be changed by assigning to
     the parameter regressions the value 'complete'. In this case, rows in
-    which a predictor variable is missing do not get imputed.
+    which a predictor variable is missing do not get imputed. If the parameter
+    predictors is omitted, all variables other than the dependent are used as
+    predictors.
 
     :param data: The data on which to perform the logistic regression
         imputation.
@@ -27,7 +29,7 @@ def logistic_regression(
     :type dependent: String
     :param predictors: The predictor variables on which the dependent variable
         is dependent.
-    :type predictors: array-like
+    :type predictors: array-like, optional
     :param regressions: If 'available': Impute missing values by modeling a
         regression based on all available predictors if some predictors have
         missing values themselves. If 'complete': Only impute with a
