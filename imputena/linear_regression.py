@@ -108,7 +108,7 @@ def linear_regression_one_dependent(
     :type dependent: String
     :param predictors: The predictor variables on which the dependent variable
         is dependent.
-    :type predictors: array-like, optional
+    :type predictors: array-like
     :param do_available_regressions: Whether to do regressions for all
         available predictor combinations or only on complete ones
     :type do_available_regressions: bool
@@ -119,7 +119,7 @@ def linear_regression_one_dependent(
         incomplete variable.
     :rtype: pandas.DataFrame
     """
-    # THis auxiliary function always returns a copy:
+    # This auxiliary function always returns a copy:
     res = data.copy()
     # If predictors is None, all variables except for the dependent one are
     # considered predictors:
@@ -172,14 +172,14 @@ def linear_regression_iter(
     :type predictors: array-like
     :param noise: Whether to add noise to the imputed value (stochastic
         regression imputation)
-    :type noise: bool, default False
+    :type noise: bool
     :param limited_predictors_combs: Reference to the set which contains all
         limited predictor combinations that are necessary to use because
         some predictor had a missing value in some row.
     :type limited_predictors_combs: set
     :return: A copy of the dataframe with linear regression imputation
         performed for the incomplete variable.
-    :rtype: pandas.DataFrame o None
+    :rtype: pandas.DataFrame
     """
     # Perform pairwise deletion before calculating the regression
     data_pairwise_deleted = data.copy()
@@ -233,7 +233,7 @@ def get_imputed_row(
     :type coefs: array-like,
     :param noise: Whether to add noise to the imputed value (stochastic
         regression imputation)
-    :type noise: bool, default False
+    :type noise: bool
     :param std_error: The standard error of the regression model. Required
         if noise=True
     :type std_error: scalar
