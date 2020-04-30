@@ -33,8 +33,8 @@ class TestLinearRegression(unittest.TestCase):
         # 2. Act
         df2 = linear_regression(df, 'sales', ['advertising', 'year'])
         # 3. Assert
-        self.assertEqual(df['sales'].isna().sum().sum(), 4)
-        self.assertEqual(df2['sales'].isna().sum().sum(), 1)
+        self.assertEqual(df['sales'].isna().sum(), 4)
+        self.assertEqual(df2['sales'].isna().sum(), 1)
 
     def test_LR_inplace(self):
         """
@@ -53,7 +53,7 @@ class TestLinearRegression(unittest.TestCase):
         # 2. Act
         linear_regression(df, 'sales', ['advertising', 'year'], inplace=True)
         # 3. Assert
-        self.assertEqual(df['sales'].isna().sum().sum(), 1)
+        self.assertEqual(df['sales'].isna().sum(), 1)
 
     def test_LR_implicit_predictors(self):
         """
@@ -73,8 +73,8 @@ class TestLinearRegression(unittest.TestCase):
         # 2. Act
         df2 = linear_regression(df, 'sales')
         # 3. Assert
-        self.assertEqual(df['sales'].isna().sum().sum(), 4)
-        self.assertEqual(df2['sales'].isna().sum().sum(), 1)
+        self.assertEqual(df['sales'].isna().sum(), 4)
+        self.assertEqual(df2['sales'].isna().sum(), 1)
 
     def test_LR_complete(self):
         """
@@ -95,8 +95,8 @@ class TestLinearRegression(unittest.TestCase):
         df2 = linear_regression(
             df, 'sales', ['advertising', 'year'], 'complete')
         # 3. Assert
-        self.assertEqual(df['sales'].isna().sum().sum(), 4)
-        self.assertEqual(df2['sales'].isna().sum().sum(), 3)
+        self.assertEqual(df['sales'].isna().sum(), 4)
+        self.assertEqual(df2['sales'].isna().sum(), 3)
 
     def test_LR_noise(self):
         """
@@ -117,8 +117,8 @@ class TestLinearRegression(unittest.TestCase):
         df2 = linear_regression(
             df, 'sales', ['advertising', 'year'], noise=True)
         # 3. Assert
-        self.assertEqual(df['sales'].isna().sum().sum(), 4)
-        self.assertEqual(df2['sales'].isna().sum().sum(), 1)
+        self.assertEqual(df['sales'].isna().sum(), 4)
+        self.assertEqual(df2['sales'].isna().sum(), 1)
 
     def test_LR_all_columns(self):
         """
