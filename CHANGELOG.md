@@ -1,10 +1,11 @@
-# Changelog
+# Changelog for imputena
 
 ## 0.3 (unreleased)
 
 ### Added
 
 * K-nearest neighbors imputation
+* Sequential regression multiple imputation
 * Perform linear regression imputation on all columns with missing values by
  calling linear_regression() without specifying a dependent column.
 

@@ -61,6 +61,10 @@ Logistic regression imputation
 ------------------------------
 .. autofunction:: imputena.logistic_regression
 
-k-nearest neighbors imputation
+K-nearest neighbors imputation
 ------------------------------
 .. autofunction:: imputena.knn
+
+Sequential regression multiple imputation
+-----------------------------------------
+.. autofunction:: imputena.srmi

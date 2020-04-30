@@ -14,3 +14,4 @@ from .seasonal_interpolation import seasonal_interpolation
 from .linear_regression import linear_regression
 from .logistic_regression import logistic_regression
 from .knn import knn
+from .srmi import srmi

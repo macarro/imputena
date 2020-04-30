@@ -26,6 +26,7 @@ values in datasets. The treatments that are implemented are:
 * Stochastic regression imputation
 * Logistic regression imputation
 * K-nearest neighbors imputation
+* Sequential regression multiple imputation
 
 ## Installation
 
