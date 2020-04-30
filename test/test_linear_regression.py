@@ -120,6 +120,27 @@ class TestLinearRegression(unittest.TestCase):
         self.assertEqual(df['sales'].isna().sum().sum(), 4)
         self.assertEqual(df2['sales'].isna().sum().sum(), 1)
 
+    def test_LR_all_columns(self):
+        """
+        Positive test
+
+        data: Correct data frame (sales)
+        dependent: None
+
+        The data frame sales contains 8 NA values.
+        linear_regression() should impute 5 of them.
+
+        Checks that the original series remains unmodified and that the
+        returned series contains 3 NA values.
+        """
+        # 1. Arrange
+        df = generate_df_sales()
+        # 2. Act
+        df2 = linear_regression(df)
+        # 3. Assert
+        self.assertEqual(df.isna().sum().sum(), 8)
+        self.assertEqual(df2.isna().sum().sum(), 3)
+
     # Negative tests ----------------------------------------------------------
 
     def test_LR_wrong_type(self):

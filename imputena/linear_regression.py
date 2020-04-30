@@ -23,13 +23,15 @@ def linear_regression(
     case, a random value is chosen from a normal distribution with the width
     of the standard error of the regression model and added to the imputed
     value. If the parameter predictors is omitted, all variables other than
-    the dependent are used as predictors.
+    the dependent are used as predictors. If the parameter dependent is
+    omitted, the operation is performed on all columns that contain missing
+    values.
 
     :param data: The data on which to perform the linear regression imputation.
     :type data: pandas.DataFrame
     :param dependent: The dependent variable in which the missing values
         should be imputed.
-    :type dependent: String
+    :type dependent: String, optional
     :param predictors: The predictor variables on which the dependent variable
         is dependent.
     :type predictors: array-like, optional
@@ -45,7 +47,7 @@ def linear_regression(
     :param inplace: If True, do operation inplace and return None.
     :type inplace: bool, default False
     :return: The dataframe with linear regression imputation performed for the
-        incomplete variable or None if inplace=True.
+        incomplete variable(s) or None if inplace=True.
     :rtype: pandas.DataFrame or None
     :raises: TypeError, ValueError
     """
@@ -53,20 +55,16 @@ def linear_regression(
     if not isinstance(data, pd.DataFrame):
         raise TypeError('The data has to be a DataFrame.')
     # Check if the dependent variable is actually a column of the dataframe:
-    if dependent not in data.columns:
+    if dependent is not None and dependent not in data.columns:
         raise ValueError(
             '\'' + dependent + '\' is not a column of the data.')
-    # If predictors is None, all variables except for the dependent one are
-    # considered predictors:
-    if predictors is None:
-        predictors = list(data.columns)
-        predictors.remove(dependent)
     # Check if each of the predictor variables is actually a column of the
     # dataframe:
-    for column in predictors:
-        if column not in data.columns:
-            raise ValueError(
-                '\'' + column + '\' is not a column of the data.')
+    if predictors is not None:
+        for column in predictors:
+            if column not in data.columns:
+                raise ValueError(
+                    '\'' + column + '\' is not a column of the data.')
     # Assign value to do_available_regressions
     if regressions == 'available':
         do_available_regressions = True
@@ -79,6 +77,55 @@ def linear_regression(
         res = data
     else:
         res = data.copy()
+    # If dependent is not set, apply the operation to each column that contains
+    # missing data:
+    if dependent is None:
+        for column in data.columns:
+            if data[column].isna().any():
+                res.loc[:, :] = linear_regression_one_dependent(
+                    res, column, predictors, do_available_regressions,
+                    noise)
+    # Otherwise apply the operation to the dependent column only:
+    else:
+        res.loc[:, :] = linear_regression_one_dependent(
+            data, dependent, predictors, do_available_regressions, noise)
+    # Return dataframe if the operation is not to be performed inplace:
+    if not inplace:
+        return res
+
+
+def linear_regression_one_dependent(
+        data, dependent, predictors, do_available_regressions, noise):
+    """Auxiliary function that performs linear regression imputation for the
+    dependent column. The difference with linear_regression() is that in
+    that function dependent can be None, in which case this function is
+    called for each column containing missing values,
+
+    :param data: The data on which to perform the linear regression imputation.
+    :type data: pandas.DataFrame
+    :param dependent: The dependent variable in which the missing values
+        should be imputed.
+    :type dependent: String
+    :param predictors: The predictor variables on which the dependent variable
+        is dependent.
+    :type predictors: array-like, optional
+    :param do_available_regressions: Whether to do regressions for all
+        available predictor combinations or only on complete ones
+    :type do_available_regressions: bool
+    :param noise: Whether to add noise to the imputed values (stochastic
+        regression imputation)
+    :type noise: bool
+    :return: The dataframe with linear regression imputation performed for the
+        incomplete variable.
+    :rtype: pandas.DataFrame
+    """
+    # THis auxiliary function always returns a copy:
+    res = data.copy()
+    # If predictors is None, all variables except for the dependent one are
+    # considered predictors:
+    if predictors is None:
+        predictors = list(data.columns)
+        predictors.remove(dependent)
     # Predictor combination sets and lists
     limited_predictors_combs = set()
     predictors_combs_done = []
@@ -104,9 +151,7 @@ def linear_regression(
             predictors_combs_done))
         logging.info('Predictor combinations to do: ' + str(
             predictors_combs_todo))
-    # Return dataframe is the operation is not to be performed inplace:
-    if not inplace:
-        return res
+    return res
 
 
 def linear_regression_iter(

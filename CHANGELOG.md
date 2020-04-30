@@ -5,6 +5,8 @@
 ### Added
 
 * K-nearest neighbors imputation
+* Perform linear regression imputation on all columns with missing values by
+ calling linear_regression() without specifying a dependent column.
 
 ## [0.2](https://github.com/macarro/imputena/releases/tag/v0.2) (2020-04-23)
 
