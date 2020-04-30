@@ -25,7 +25,7 @@ class TestLinearRegression(unittest.TestCase):
         The data frame sales contains 4 NA values in the column 'sales'.
         linear_regression() should impute 3 of them.
 
-        Checks that the original series remains unmodified and that the
+        Checks that the original data frame remains unmodified and that the
         returned series contains 1 NA value in the column 'sales'.
         """
         # 1. Arrange
@@ -65,7 +65,7 @@ class TestLinearRegression(unittest.TestCase):
         The data frame sales contains 4 NA values in the column 'sales'.
         linear_regression() should impute 3 of them.
 
-        Checks that the original series remains unmodified and that the
+        Checks that the original data frame remains unmodified and that the
         returned series contains 1 NA value in the column 'sales'.
         """
         # 1. Arrange
@@ -86,7 +86,7 @@ class TestLinearRegression(unittest.TestCase):
         The data frame sales contains 4 NA values in the column 'sales'.
         linear_regression() should impute 1 of them.
 
-        Checks that the original series remains unmodified and that the
+        Checks that the original data frame remains unmodified and that the
         returned series contains 3 NA value in the column 'sales'.
         """
         # 1. Arrange
@@ -108,7 +108,7 @@ class TestLinearRegression(unittest.TestCase):
         The data frame sales contains 4 NA values in the column 'sales'.
         linear_regression() should impute 3 of them.
 
-        Checks that the original series remains unmodified and that the
+        Checks that the original data frame remains unmodified and that the
         returned series contains 1 NA value in the column 'sales'.
         """
         # 1. Arrange
@@ -130,7 +130,7 @@ class TestLinearRegression(unittest.TestCase):
         The data frame sales contains 8 NA values.
         linear_regression() should impute 5 of them.
 
-        Checks that the original series remains unmodified and that the
+        Checks that the original data frame remains unmodified and that the
         returned series contains 3 NA values.
         """
         # 1. Arrange
