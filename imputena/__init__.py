@@ -15,3 +15,4 @@ from .linear_regression import linear_regression
 from .logistic_regression import logistic_regression
 from .knn import knn
 from .srmi import srmi
+from .recommend_method import recommend_method
