@@ -135,7 +135,7 @@ def recommend_method(data=None, column=None, title_only=False):
     else:
         for idx, message in enumerate(messages):
             res += str(idx + 1) + '. ' + message + '\n'
-        res += f'Therefore you should apply {method}.'
+        res += 'Therefore you should apply {}.'.format(method)
     return res
 
 
