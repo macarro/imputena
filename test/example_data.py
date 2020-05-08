@@ -289,3 +289,29 @@ def generate_df_breast_cancer():
                   'B', None, 'M', None, 'B', None, 'B', 'M', 'B', 'B', 'B',
                   'B', 'M', 'M', 'M', 'M', 'M', 'B', 'B']
     })
+
+
+def generate_ts_cat():
+    """
+    Example timeseries with categorical values.
+    """
+    return pd.Series(
+        data=['A', None, 'B', None, None, 'A', 'C', 'A', None, 'B'],
+        index=pd.date_range(start='2000', end='2010', freq='Y')
+    )
+
+
+def generate_example_df_high_corr():
+    """
+    Example data frame with high correlation between columns.
+    """
+    return pd.DataFrame(
+        data={
+            'a': np.array([
+                1, 2, 3, 4, 5,6, 7, 8, 9, 10]),
+            'b': np.array([
+                2, 4, 6, 8, 10, 12, 14, 16, 18, np.nan]),
+
+        },
+        index=list([x for x in range(1, 11)])
+    )
