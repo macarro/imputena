@@ -26,7 +26,7 @@ def seasonal_interpolation(
     :param columns: Columns on which to apply the operation.
     :type columns: array-like, optional
     :param inplace: If True, do operation inplace and return None.
-    :type inplace: bool, default 0
+    :type inplace: bool, default False
     :return: The series or dataframe with NA values interpolated, or
         None if inplace=True.
     :rtype: pandas.Series, pandas.DataFrame, or None
