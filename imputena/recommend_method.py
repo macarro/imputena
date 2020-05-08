@@ -77,53 +77,56 @@ def recommend_method(data=None, column=None, title_only=False):
             if is_categorical(series):
                 # The column contains categorical values.
                 messages.append(
-                    f'The column {column} contains categorical values.')
+                    'The column {} contains categorical values.'.format(
+                        column))
                 method = 'logistic regression imputation'
             else:
                 # The column contains numerical values.
                 messages.append(
-                    f'The column {column} contains numerical values.')
+                    'The column {} contains numerical values.'.format(
+                        column))
                 # Check if the column represents a time series:
                 if is_timeseries(series):
                     # The column represents a time series.
                     messages.append(
-                        'The column {column} represent a time series.')
+                        'The column {} represent a time series.'.format(
+                            column))
                     method = 'interpolation with seasonal adjustment'
                 else:
                     # The column does not represent a time series.
                     messages.append(
-                        f'The column {column} does not represent a time '
-                        'series.')
+                        'The column {} does not represent a time '
+                        'series.'.format(column))
                     # Check if the column contains less than 10% missing
                     # values:
                     if has_lt_10_percent_na(series):
                         # The column contains less than 10% missing values.
                         messages.append(
                             'Less than 10% of the values in the '
-                            f'column {column} are missing.')
+                            'column {} are missing.'.format(column))
                         method = 'mean substitution'
                     else:
                         # The column contains 10% or more missing values.
                         messages.append(
                             '10% or more of the values in the column'
-                            f'{column} are missing.')
+                            '{} are missing.'.format(column))
                         # Check if the column has a correlation of more than
                         # 0.8 with any other column.
                         if has_gt_80_percent_cor(data, column):
                             # The column does have a correlation of more
                             # than 0.8 with at least one other column.
                             messages.append(
-                                f'The column {column} has high '
+                                'The column {} has high '
                                 'correlations (> 0.8) with at least one '
-                                'other column.')
+                                'other column.'.format(column))
                             method = 'linear regression imputation'
                         else:
                             # The column does not have a correlation of more
                             # than 0.8 with at least one other column.
                             messages.append(
-                                f'The column {column} does not ' 
+                                'The column {} does not ' 
                                 'have high correlations (> 0.8) with any '
-                                'other column.')
+                                'other column.'.format(column))
                             method = 'imputation using k-NN'
     # Create return string and return:
     res = ''
