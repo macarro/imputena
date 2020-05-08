@@ -2,7 +2,7 @@ import unittest
 
 from imputena import logistic_regression
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestLogisticRegression(unittest.TestCase):

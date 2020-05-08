@@ -2,7 +2,7 @@ import unittest
 
 from imputena import delete_pairwise
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestDeletePairwise(unittest.TestCase):

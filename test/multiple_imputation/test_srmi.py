@@ -3,7 +3,7 @@ import logging
 
 from imputena import srmi
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestSRMI(unittest.TestCase):

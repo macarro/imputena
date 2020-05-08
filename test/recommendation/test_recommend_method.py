@@ -2,7 +2,7 @@ import unittest
 
 from imputena import recommend_method
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestRecommendMethod(unittest.TestCase):

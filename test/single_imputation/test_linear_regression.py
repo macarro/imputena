@@ -3,7 +3,7 @@ import logging
 
 from imputena import linear_regression
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestLinearRegression(unittest.TestCase):

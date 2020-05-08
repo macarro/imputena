@@ -2,7 +2,7 @@ import unittest
 
 from imputena import most_frequent
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestMostFrequent(unittest.TestCase):

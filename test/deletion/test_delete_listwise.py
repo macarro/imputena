@@ -2,7 +2,7 @@ import unittest
 
 from imputena import delete_listwise
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestDeleteListwise(unittest.TestCase):

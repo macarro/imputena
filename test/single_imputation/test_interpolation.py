@@ -2,7 +2,7 @@ import unittest
 
 from imputena import interpolation
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestInterpolation(unittest.TestCase):

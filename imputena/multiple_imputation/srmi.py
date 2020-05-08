@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn import linear_model
-from .linear_regression import get_imputed_row
+from imputena.simple_imputation.linear_regression import get_imputed_row
 import logging
 
 

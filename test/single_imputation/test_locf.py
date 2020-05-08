@@ -2,7 +2,7 @@ import unittest
 
 from imputena import locf
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestLOCF(unittest.TestCase):

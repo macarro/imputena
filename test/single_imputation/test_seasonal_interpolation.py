@@ -2,7 +2,7 @@ import unittest
 
 from imputena import seasonal_interpolation
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestSeasonalInterpolation(unittest.TestCase):

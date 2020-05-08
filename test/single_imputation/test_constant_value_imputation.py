@@ -2,7 +2,7 @@ import unittest
 
 from imputena import constant_value_imputation
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestConstantValueImputation(unittest.TestCase):

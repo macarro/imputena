@@ -2,7 +2,7 @@ import unittest
 
 from imputena import random_sample_imputation
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestRandomSampleImputation(unittest.TestCase):

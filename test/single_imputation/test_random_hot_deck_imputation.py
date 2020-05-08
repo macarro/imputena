@@ -2,7 +2,7 @@ import unittest
 
 from imputena import random_hot_deck_imputation
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestRandomHotDeckImputation(unittest.TestCase):

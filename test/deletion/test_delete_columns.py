@@ -2,7 +2,7 @@ import unittest
 
 from imputena import delete_columns
 
-from .example_data import *
+from test.example_data import *
 
 
 class TestDeleteColumns(unittest.TestCase):
