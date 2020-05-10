@@ -68,3 +68,7 @@ K-nearest neighbors imputation
 Sequential regression multiple imputation
 -----------------------------------------
 .. autofunction:: imputena.srmi
+
+Recommend method
+----------------
+.. autofunction:: imputena.recommend_method
