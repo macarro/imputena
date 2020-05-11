@@ -201,6 +201,24 @@ def contains_categorical(dataframe):
     return contains
 
 
+def contains_only_categorical(dataframe):
+    """Auxiliary function that checks whether a data frame contains categorical
+    values in all columns.
+
+    :param dataframe: The data frame to check
+    :type dataframe: pandas.DataFrame
+    :return: Whether the data frame contains categorical values in at least
+        one column.
+    :rtype: bool
+    """
+    contains_only = True
+    for column in dataframe.columns:
+        if not is_categorical(dataframe[column]):
+            contains_only = False
+            break
+    return contains_only
+
+
 def is_timeseries(series):
     """Auxiliary function that checks whether a series has a datetime index
     and therefore is a timeseries.
@@ -211,6 +229,18 @@ def is_timeseries(series):
     :rtype: bool
     """
     return isinstance(series.index, pd.DatetimeIndex)
+
+
+def is_temporal(data):
+    """Auxiliary function that checks whether a series or dataframe has a
+    datetime index is therefore temporal.
+
+    :param data: The data to check
+    :type data: pandas.Series or pandas.DataFrame
+    :return: Whether the data has a datetime index
+    :rtype: bool
+    """
+    return isinstance(data.index, pd.DatetimeIndex)
 
 
 def has_gt_80_percent_cor(data, column):

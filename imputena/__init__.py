@@ -20,3 +20,4 @@ from .simple_imputation.knn import knn
 from .multiple_imputation.srmi import srmi
 from .recommendation.recommend_method import recommend_method
 from .recommendation.impute_by_recommended import impute_by_recommended
+from .recommendation.get_applicable_methods import get_applicable_methods

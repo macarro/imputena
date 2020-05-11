@@ -301,6 +301,38 @@ def generate_ts_cat():
     )
 
 
+def generate_example_df_ts_cat():
+    """
+    Example data frame containing two columns:
+    grades: 6 strings, 4 None values
+    empty: 10 None values
+    """
+    grades = generate_ts_cat()
+    return pd.DataFrame(
+        data={
+            'grades': grades,
+            'empty': None
+        }
+    )
+
+
+def generate_example_df_ts_cat_and_num():
+    """
+    Example data frame containing three columns:
+    grades: 6 strings, 4 None values
+    points: 8 integers, 2 NA values
+    empty: 10 None values
+    """
+    grades = generate_ts_cat()
+    return pd.DataFrame(
+        data={
+            'grades': grades,
+            'points': np.array([5, 3, np.nan, np.nan, 0, 1, 3, 5, 8, 7]),
+            'empty': None
+        }
+    )
+
+
 def generate_example_df_high_corr():
     """
     Example data frame with high correlation between columns.
