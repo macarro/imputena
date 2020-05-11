@@ -5,6 +5,18 @@ from imputena import *
 
 
 def impute_by_recommended(data=None, column=None, inplace=False):
+    """Imputes a series, dataframe or particular column of a dataframe with
+    the best imputation method for the given data.
+
+    :param data: The data that should be imputed.
+    :type data: pandas.Series or pandas.DataFrame
+    :param column: If data is a data frame, the column that should be imputed.
+    :type column: string, optional
+    :param inplace: If True, do operation inplace and return None.
+    :type inplace: bool, default False
+    :rtype: pandas.Series, pandas.DataFrame, or None
+    :raises: TypeError, ValueError
+    """
     # Check that data is a Series or Dataframe:
     if not (isinstance(data, pd.Series) or isinstance(data, pd.DataFrame)):
         raise TypeError('The data has to be a Series or DataFrame.')

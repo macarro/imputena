@@ -5,6 +5,18 @@ from .recommend_method import is_series, is_dataframe, is_categorical, \
 
 
 def get_applicable_methods(data=None):
+    """Informs about the imputation methods that are applicable to a given
+    data frame or series, based on the number of variables (one or
+    multiple), type of data (categorical, numerical, o both), and whether
+    the data is of temporal nature.
+
+    :param data: The data for which an the applicable imputation method
+        should be returned.
+    :type data: pandas.Series or pandas.DataFrame
+    :return: The imputation methods that are applicable to the data
+    :rtype: set of strings
+    :raises: TypeError
+    """
     # Check that data is a Series or Dataframe:
     if not (isinstance(data, pd.Series) or isinstance(data, pd.DataFrame)):
         raise TypeError(
