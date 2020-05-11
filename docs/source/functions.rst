@@ -76,3 +76,7 @@ Recommend method
 Impute by recommended
 ---------------------
 .. autofunction:: imputena.impute_by_recommended
+
+Get applicable methods
+----------------------
+.. autofunction:: imputena.get_applicable_methods
