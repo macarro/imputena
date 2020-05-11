@@ -72,3 +72,7 @@ Sequential regression multiple imputation
 Recommend method
 ----------------
 .. autofunction:: imputena.recommend_method
+
+Impute by recommended
+---------------------
+.. autofunction:: imputena.impute_by_recommended
