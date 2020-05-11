@@ -84,5 +84,5 @@ To execute only the tests contained in a particular test class, for example
  project root directory:
 
 ```ShellSession
-python -m unittest test.recommendation.test_delete_listwise
+python -m unittest test.deletion.test_delete_listwise
 ```
