@@ -6,6 +6,10 @@
 
 * K-nearest neighbors imputation
 * Sequential regression multiple imputation
+* Get information about the applicable and the recommended treatments for a
+ given dataset
+* Impute a dataset automatically with the best method using
+ `impute_by_recommended`
 * Perform linear regression imputation on all columns with missing values by
  calling linear_regression() without specifying a dependent column.
 

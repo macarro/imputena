@@ -24,6 +24,10 @@ package are:
 * K-nearest neighbors imputation
 * Sequential regression multiple imputation
 
+All these treatments can be applied to whole datasets or parts of them and
+ allow for extensive customization. The package can also recommend a
+  treatment for a given dataset, inform about the treatments that are
+   applicable to it, and automatically apply the best treatment.
 """
 
 setuptools.setup(
