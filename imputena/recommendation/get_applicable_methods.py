@@ -1,7 +1,8 @@
 import pandas as pd
 
-from .recommend_method import is_series, is_dataframe, is_categorical, \
-    is_numeric, contains_categorical, contains_only_categorical, is_temporal
+from .utils import (
+    is_series, is_dataframe, is_categorical, is_numeric,
+    contains_categorical, contains_only_categorical, is_temporal)
 
 
 def get_applicable_methods(data=None):
