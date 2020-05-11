@@ -32,11 +32,26 @@ def knn(data=None, columns=None, k=3, inplace=False):
         res = data
     else:
         res = data.copy()
-    # Perform KNN
-    knn_out = KNNImputer(n_neighbors=k).fit_transform(data)
+    # The KNNImputer removes all columns that contain only empty values.
+    # Therefore, we save those values in order to add them later (otherwise
+    # problems would occur with dataframes that contain such columns:
+    empty_column_names = res.columns[res.isna().all()]
+    empty_column_indices = [
+        res.columns.get_loc(column_name) for column_name in empty_column_names]
+    empty_column_values = res.loc[:, res.isna().all()]
+    # Perform KNN:
+    knn_out_array = KNNImputer(n_neighbors=k).fit_transform(data)
+    knn_out = pd.DataFrame(knn_out_array)
+    # Add empty columns back and set indices of knn_out:
+    for i, empty_column_name in enumerate(empty_column_names):
+        knn_out.insert(
+            empty_column_indices[i], empty_column_name,
+            empty_column_values.iloc[:, i])
+    knn_out.columns = res.columns
+    knn_out.index = res.index
     # Treatment for a whole dataframe:
     if columns is None:
-        res[:] = knn_out
+        res.loc[:, :] = knn_out
     # Treatment for selected columns of a dataframe:
     else:
         for column in columns:
@@ -44,7 +59,7 @@ def knn(data=None, columns=None, k=3, inplace=False):
                 raise ValueError(
                     '\'' + column + '\' is not a column of the data.')
             col_loc = data.columns.get_loc(column)
-            res[column] = knn_out[:, col_loc]
+            res[column] = knn_out.iloc[:, col_loc]
     # Return the imputed data, or None if inplace:
     if inplace:
         return None

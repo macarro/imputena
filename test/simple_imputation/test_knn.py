@@ -22,8 +22,7 @@ class TestKNN(unittest.TestCase):
         returned data frame contains no NA values.
         """
         # 1. Arrange
-        #df = generate_example_df()
-        df = generate_example_df_divcols()
+        df = generate_example_df()
         # 2. Act
         df2 = knn(df)
         # 3. Assert
