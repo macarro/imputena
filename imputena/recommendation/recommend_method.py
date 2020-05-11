@@ -1,6 +1,4 @@
 import pandas as pd
-import numpy as np
-from statsmodels.tsa.seasonal import seasonal_decompose
 from pandas.api.types import is_numeric_dtype
 
 
