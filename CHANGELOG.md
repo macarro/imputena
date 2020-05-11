@@ -6,6 +6,7 @@
 
 * K-nearest neighbors imputation
 * Sequential regression multiple imputation
+* Multiple imputation by chained equations
 * Get information about the applicable and the recommended treatments for a
  given dataset
 * Impute a dataset automatically with the best method using

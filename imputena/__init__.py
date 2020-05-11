@@ -17,6 +17,7 @@ from .simple_imputation.seasonal_interpolation import seasonal_interpolation
 from .simple_imputation.linear_regression import linear_regression
 from .simple_imputation.logistic_regression import logistic_regression
 from .simple_imputation.knn import knn
+from .multiple_imputation.mice import mice
 from .multiple_imputation.srmi import srmi
 from .recommendation.recommend_method import recommend_method
 from .recommendation.impute_by_recommended import impute_by_recommended

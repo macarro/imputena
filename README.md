@@ -27,6 +27,7 @@ values in datasets. The treatments that are implemented are:
 * Logistic regression imputation
 * K-nearest neighbors imputation
 * Sequential regression multiple imputation
+* Multiple imputation by chained equations
 
 All these treatments can be applied to whole datasets or parts of them and
  allow for extensive customization. The package can also recommend a

@@ -69,6 +69,10 @@ Sequential regression multiple imputation
 -----------------------------------------
 .. autofunction:: imputena.srmi
 
+Multiple imputation by chained equations
+----------------------------------------
+.. autofunction:: imputena.mice
+
 Recommend method
 ----------------
 .. autofunction:: imputena.recommend_method
