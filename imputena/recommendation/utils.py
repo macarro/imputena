@@ -88,18 +88,6 @@ def contains_only_categorical(dataframe):
     return contains_only
 
 
-def is_timeseries(series):
-    """Auxiliary function that checks whether a series has a datetime index
-    and therefore is a timeseries.
-
-    :param series: The series to check
-    :type series: pandas.Series
-    :return: Whether the series has a datetime index
-    :rtype: bool
-    """
-    return isinstance(series.index, pd.DatetimeIndex)
-
-
 def is_temporal(data):
     """Auxiliary function that checks whether a series or dataframe has a
     datetime index is therefore temporal.

@@ -4,7 +4,7 @@ import pandas as pd
 from .utils import (
     is_series, is_dataframe, is_categorical, is_numeric, contains_categorical,
     contains_only_categorical, is_temporal, has_lt_10_percent_na,
-    has_gt_80_percent_cor, is_timeseries)
+    has_gt_80_percent_cor)
 
 
 def recommend_method(data=None, column=None, title_only=False):
@@ -47,7 +47,7 @@ def recommend_method(data=None, column=None, title_only=False):
             method = 'random sample imputation'
         else:
             messages.append('The series contains numerical values.')
-            if is_timeseries(series):
+            if is_temporal(series):
                 messages.append('The series is a time series.')
                 method = 'interpolation with seasonal adjustment'
             else:
@@ -89,7 +89,7 @@ def recommend_method(data=None, column=None, title_only=False):
                     'The column {} contains numerical values.'.format(
                         column))
                 # Check if the column represents a time series:
-                if is_timeseries(series):
+                if is_temporal(series):
                     # The column represents a time series.
                     messages.append(
                         'The column {} represent a time series.'.format(
