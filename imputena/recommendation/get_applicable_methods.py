@@ -46,6 +46,7 @@ def get_applicable_methods(data=None):
         'most-frequent substitution',
         'constant value substitution',
         'srmi',
+        'mice',
         'LOCF',
         'NOCB'
     }

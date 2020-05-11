@@ -34,6 +34,7 @@ class TestGetApplicableMethods(unittest.TestCase):
             'most-frequent substitution',
             'constant value substitution',
             'srmi',
+            'mice',
             'logistic regression imputation'
         })
 
@@ -62,6 +63,7 @@ class TestGetApplicableMethods(unittest.TestCase):
             'most-frequent substitution',
             'constant value substitution',
             'srmi',
+            'mice',
             'LOCF',
             'NOCB',
             'logistic regression imputation'
@@ -93,6 +95,7 @@ class TestGetApplicableMethods(unittest.TestCase):
             'most-frequent substitution',
             'constant value substitution',
             'srmi',
+            'mice',
         })
 
     def test_GAM_df_cat_and_num_ts(self):
@@ -121,6 +124,7 @@ class TestGetApplicableMethods(unittest.TestCase):
             'most-frequent substitution',
             'constant value substitution',
             'srmi',
+            'mice',
             'LOCF',
             'NOCB',
         })
@@ -150,6 +154,7 @@ class TestGetApplicableMethods(unittest.TestCase):
             'most-frequent substitution',
             'constant value substitution',
             'srmi',
+            'mice',
             'mean substitution',
             'median substitution',
             'random value imputation',
@@ -183,6 +188,7 @@ class TestGetApplicableMethods(unittest.TestCase):
             'most-frequent substitution',
             'constant value substitution',
             'srmi',
+            'mice',
             'LOCF',
             'NOCB',
             'mean substitution',
