@@ -12,11 +12,11 @@
 * Impute a dataset automatically with the best method using
  `impute_by_recommended`
 * Perform linear regression imputation on all columns with missing values by
- calling linear_regression() without specifying a dependent column.
- 
+ calling linear`_regression() without specifying a dependent column.
+ ``
  ### Changed
 
-* Fixed random_hot_deck_imputation raising error when specifying a column
+* Fixed `random_hot_deck_imputation` raising error when specifying a column
  name that contains spaces
 * Code refactoring and style improvements
 
