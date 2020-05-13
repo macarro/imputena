@@ -80,11 +80,11 @@ def get_row_with_donation(row, incomplete_variable, deck_variables, data):
         # query_string will hold a query selecting all possible donors.
         # First, the donor should not have a missing value in the variable
         # that is to be imputed:
-        query_string = incomplete_variable + '.notnull()'
+        query_string = '`' + incomplete_variable + '`.notnull()'
         # The donor should also coincide in value with the row that the
         # operation if being performed on for all the deck variables:
         for variable in deck_variables:
-            query_string += ' and (' + variable + ' == \'' \
+            query_string += ' and (`' + variable + '` == \'' \
                             + str(row[variable]) + '\')'
         donors = data.query(query_string)
         # The missing value is only imputed if a donor that coincides in

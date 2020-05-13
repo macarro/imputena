@@ -16,6 +16,8 @@
  
  ### Changed
 
+* Fixed random_hot_deck_imputation raising error when specifying a column
+ name that contains spaces
 * Code refactoring and style improvements
 
 ## [0.2](https://github.com/macarro/imputena/releases/tag/v0.2) (2020-04-23)
