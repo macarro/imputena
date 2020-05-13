@@ -31,7 +31,7 @@ def get_applicable_methods(data=None):
         'mean substitution',
         'median substitution',
         'random value imputation',
-        'lineal regression',
+        'linear regression',
         'stochastic regression',
         'imputation using k-NN',
         'interpolation',
