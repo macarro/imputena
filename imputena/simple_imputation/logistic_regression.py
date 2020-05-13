@@ -1,6 +1,8 @@
 import pandas as pd
 from sklearn import linear_model
+from sklearn.exceptions import ConvergenceWarning
 import logging
+import warnings
 
 
 def logistic_regression(
@@ -137,7 +139,9 @@ def logistic_regression_iter(
     x = data_pairwise_deleted[predictors]
     y = data_pairwise_deleted[dependent]
     model = linear_model.LogisticRegression()
-    model.fit(x, y)
+    with warnings.catch_warnings():
+        warnings.filterwarnings('ignore', category=ConvergenceWarning)
+        model.fit(x, y)
     # Implementation using apply:
     return data.apply(
         lambda row: get_imputed_row(
