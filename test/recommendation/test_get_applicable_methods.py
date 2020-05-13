@@ -158,7 +158,7 @@ class TestGetApplicableMethods(unittest.TestCase):
             'mean substitution',
             'median substitution',
             'random value imputation',
-            'lineal regression',
+            'linear regression',
             'stochastic regression',
             'imputation using k-NN'
         })
@@ -194,7 +194,7 @@ class TestGetApplicableMethods(unittest.TestCase):
             'mean substitution',
             'median substitution',
             'random value imputation',
-            'lineal regression',
+            'linear regression',
             'stochastic regression',
             'imputation using k-NN',
             'interpolation',
