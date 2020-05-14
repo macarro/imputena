@@ -12,7 +12,7 @@
 * Impute a dataset automatically with the best method using
  `impute_by_recommended`
 * Perform linear regression imputation on all columns with missing values by
- calling `linear_regression()` without specifying a dependent column.
+ calling `linear_regression` without specifying a dependent column.
  
  ### Changed
 
