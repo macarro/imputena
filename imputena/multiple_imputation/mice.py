@@ -7,6 +7,31 @@ from imputena import mean_substitution, linear_regression, logistic_regression
 
 
 def mice(data=None, imputations=3, regressions='available'):
+    """Performs multiple imputation by chained equations (MICE) on the data.
+    Several (parameter imputations) linear regression imputations are
+    performed on the dataset. For each one, the a random order of imputation of
+    columns in generated. Then the dataset is imputed with mean
+    substitution. For each column with missing data, and in the previously
+    generated order, (1) the missing values imputed with the mean are set
+    missing again, (2) a linear regression model is calculated based on the
+    available data and (3) the predictions from the model are used to impute
+    the missing values.
+
+    :param data: The data on which to perform the MICE imputation.
+    :type data: pandas.DataFrame
+    :param imputations: Number of imputations to perform
+    :type imputations: scalar, default 3
+    :param regressions: If 'available': Impute missing values by modeling a
+        regression based on all available predictors if some predictors have
+        missing values themselves. If 'complete': Only impute with a
+        regression model based on all predictors and leave missing values in
+        rows in which some predictor value is missing itself unimputed.
+    :type regressions: {'available', 'complete'}, default 'available'
+    :return: A list of MICE imputations performed with randomly chosen
+        orders of column imputations.
+    :rtype: list of pandas.DataFrame
+    :raises: TypeError, ValueError
+    """
     # Check if data is a dataframe:
     if not isinstance(data, pd.DataFrame):
         raise TypeError('The data has to be a DataFrame.')
@@ -24,6 +49,20 @@ def mice(data=None, imputations=3, regressions='available'):
 
 
 def mice_one_imputation(data, regressions):
+    """Auxiliary function that performs one MICE imputation, choosing the
+    order in which the columns are imputed at random.
+
+    :param data: The data on which to perform the imputation.
+    :type data: pandas.DataFrame
+    :param regressions: If 'available': Impute missing values by modeling a
+        regression based on all available predictors if some predictors have
+        missing values themselves. If 'complete': Only impute with a
+        regression model based on all predictors and leave missing values in
+        rows in which some predictor value is missing itself unimputed.
+    :type regressions: {'available', 'complete'}
+    :return: The dataframe with one MICE imputation performed.
+    :rtype: pandas.DataFrame
+    """
     # This auxiliary function always returns a copy:
     res = data.copy()
     # Save the mask of missing values:
