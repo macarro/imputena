@@ -17,7 +17,7 @@ def srmi(data=None, sample_size=10, imputations=3, regressions='available'):
     the parameter regressions the value 'complete'. In this case, rows in
     which a predictor variable is missing do not get imputed.
 
-    :param data: The data on which to perform the linear regression imputation.
+    :param data: The data on which to perform the SRMI.
     :type data: pandas.DataFrame
     :param sample_size: Maximum size of the set of rows used to compute the
         regression model. Has to be at least 2.
@@ -67,8 +67,9 @@ def srmi_one_imputation(data, sample_size, do_available_regressions):
     :param do_available_regressions: Whether to do regressions for all
         available predictor combinations or only on complete ones
     :type do_available_regressions: bool
-    :return: The dataframe with linear regression imputation performed for the
-        incomplete variable based on a model created from a sample.
+    :return: The dataframe with one linear regression imputation performed
+        for all columns with missing values, based on a model created from a
+        sample.
     :rtype: pandas.DataFrame
     """
     # This auxiliary function always returns a copy:
