@@ -1,6 +1,6 @@
 # Changelog for imputena
 
-## 0.3 (unreleased)
+## [0.3](https://github.com/macarro/imputena/releases/tag/v0.3) (2020-05-14)
 
 ### Added
 
