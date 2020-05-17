@@ -1,5 +1,12 @@
 # Changelog for imputena
 
+## 0.4 (unreleased)
+
+### Removed
+
+* Removed the parameter *regressions* from `mice` as is didn't have any
+ effect on the behavior
+
 ## [0.3](https://github.com/macarro/imputena/releases/tag/v0.3) (2020-05-14)
 
 ### Added
