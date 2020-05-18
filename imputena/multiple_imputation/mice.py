@@ -3,7 +3,9 @@ from pandas.api.types import is_numeric_dtype
 import numpy as np
 from random import shuffle
 
-from imputena import mean_substitution, linear_regression, logistic_regression
+from imputena import (
+    mean_substitution, linear_regression, logistic_regression,
+    random_sample_imputation)
 
 
 def mice(data=None, imputations=3):
@@ -59,12 +61,18 @@ def mice_one_imputation(data):
     # Shuffle the list of columns to impute:
     shuffle(columns_with_na)
     # Impute with mean substitution:
-    mean_substitution(res, inplace=True)
+    for column in columns_with_na:
+        if is_numeric_dtype(data[column]):
+            mean_substitution(res, columns=[column], inplace=True)
+        else:
+            random_sample_imputation(res, columns=[column], inplace=True)
+    # Compute which columns are numeric in order to use them as predictors:
+    numerics = [col for col in data.columns if is_numeric_dtype(data[col])]
     # Impute each column:
     for column in columns_with_na:
         if is_numeric_dtype(data[column]):
             res.loc[na_mask[column], column] = np.nan
-            linear_regression(res, column, inplace=True)
+            linear_regression(res, column, predictors=numerics, inplace=True)
         else:
             res.loc[na_mask[column], column] = None
             logistic_regression(res, column, inplace=True)

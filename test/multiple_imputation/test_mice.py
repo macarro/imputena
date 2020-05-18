@@ -29,11 +29,11 @@ class TestMICE(unittest.TestCase):
         returns 3 dataframes and that each of those contains no NA values.
         """
         # 1. Arrange
-        df = generate_df_sales()
+        df = generate_df_breast_cancer()
         # 2. Act
         dfs = mice(df)
         # 3. Assert
-        self.assertEqual(df.isna().sum().sum(), 8)
+        self.assertEqual(df.isna().sum().sum(), 15)
         self.assertEqual(len(dfs), 3)
         self.assertEqual(dfs[0].isna().sum().sum(), 0)
         self.assertEqual(dfs[1].isna().sum().sum(), 0)
