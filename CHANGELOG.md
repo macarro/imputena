@@ -2,6 +2,11 @@
 
 ## 0.4 (unreleased)
 
+### Changed
+
+* Fixed `mice` raising an error if a column contains categorical data
+* Code refactoring and style improvements
+
 ### Removed
 
 * Removed the parameter *regressions* from `mice` as is didn't have any
@@ -40,7 +45,7 @@
 ### Changed
 
 * `seasonal_interpolation` now raises a ValueError if the value of
- `dec_model` is not 'multiplicative' or 'additive'.
+ `dec_model` is not 'multiplicative' or 'additive'
 * Code refactoring and style improvements
 
 ## [0.1](https://github.com/macarro/imputena/releases/tag/v0.1) (2020-04-12)
