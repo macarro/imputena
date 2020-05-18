@@ -280,3 +280,19 @@ class TestMeanSubstitution(unittest.TestCase):
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
             mean_substitution(df, columns=['f', 'g', 'z'], inplace=True)
+
+    def test_MS_wrong_method(self):
+        """
+        Negative test
+
+        data: Correct series (example series)
+        method: 'z' (not a valid method)
+
+        Checks that the function raises a ValueError if the value passed for
+        the parameter method is not valid.
+        """
+        # 1. Arrange
+        ser = generate_example_series()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError):
+            mean_substitution(ser, method='z')
