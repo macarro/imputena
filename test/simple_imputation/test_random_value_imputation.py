@@ -113,6 +113,42 @@ class TestRandomValueImputation(unittest.TestCase):
         # 3. Assert
         self.assertEqual(ser.isna().sum().sum(), 0)
 
+    def test_RVI_series_normal_distribution(self):
+        """
+        Positive test
+
+        data: Correct series (example series)
+        distribution: 'normal'
+
+        Checks that the original series remains unmodified and that the
+        returned dataframe contains 0 NA values, 3 less than the original.
+        """
+        # 1. Arrange
+        ser = generate_example_series()
+        # 2. Act
+        ser2 = random_value_imputation(ser, 'normal')
+        # 3. Assert
+        self.assertEqual(ser.isna().sum().sum(), 3)
+        self.assertEqual(ser2.isna().sum().sum(), 0)
+
+    def test_RVI_series_integer_distribution(self):
+        """
+        Positive test
+
+        data: Correct series (example series)
+        distribution: 'integer'
+
+        Checks that the original series remains unmodified and that the
+        returned dataframe contains 0 NA values, 3 less than the original.
+        """
+        # 1. Arrange
+        ser = generate_example_series()
+        # 2. Act
+        ser2 = random_value_imputation(ser, 'integer')
+        # 3. Assert
+        self.assertEqual(ser.isna().sum().sum(), 3)
+        self.assertEqual(ser2.isna().sum().sum(), 0)
+
     # Negative tests ----------------------------------------------------------
 
     def test_RVI_wrong_type(self):
