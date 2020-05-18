@@ -230,6 +230,22 @@ class TestLOCF(unittest.TestCase):
         with self.assertRaises(TypeError):
             locf(data)
 
+    def test_LOCF_col_for_series(self):
+        """
+        Negative test
+
+        data: Correct series (example_series)
+        columns: ['a'] (series can't have columns)
+
+        Checks that the function raises a ValueError if a column is passed
+        for a series.
+        """
+        # 1. Arrange
+        ser = generate_example_series()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError):
+            locf(ser, columns=['a'])
+
     def test_LOCF_df_returning_wrong_column(self):
         """
         Negative test
