@@ -217,6 +217,22 @@ class TestSeasonalInterpolation(unittest.TestCase):
         with self.assertRaises(TypeError):
             seasonal_interpolation(data)
 
+    def test_SI_col_for_series(self):
+        """
+        Negative test
+
+        data: Correct series (ts_airgap)
+        columns: ['a'] (series can't have columns)
+
+        Checks that the function raises a ValueError if a column is passed
+        for a series.
+        """
+        # 1. Arrange
+        ser = generate_ts_airgap()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError):
+            seasonal_interpolation(ser, columns=['a'])
+
     def test_SI_df_wrong_column(self):
         """
         Negative test
