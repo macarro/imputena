@@ -79,6 +79,21 @@ class TestRandomValueImputation(unittest.TestCase):
 
     # Negative tests ----------------------------------------------------------
 
+    def test_RVI_wrong_type(self):
+        """
+        Negative test
+
+        data: array (unsupported type)
+
+        Checks that the function raises a TypeError if the data is passed as
+        an array.
+        """
+        # 1. Arrange
+        data = [2, 4, np.nan, 1]
+        # 2. Act & 3. Assert
+        with self.assertRaises(TypeError):
+            random_value_imputation(data)
+
     def test_RVI_df_wrong_columns(self):
         """
         Negative test
