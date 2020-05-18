@@ -130,6 +130,22 @@ class TestConstantValueImputation(unittest.TestCase):
         with self.assertRaises(TypeError):
             constant_value_imputation(data)
 
+    def test_CVI_col_for_series(self):
+        """
+        Negative test
+
+        data: Correct series (example_series)
+        columns: ['a'] (series can't have columns)
+
+        Checks that the function raises a ValueError if a column is passed
+        for a series.
+        """
+        # 1. Arrange
+        ser = generate_example_series()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError):
+            constant_value_imputation(ser, columns=['a'])
+
     def test_CVI_df_returning_wrong_column(self):
         """
         Negative test
