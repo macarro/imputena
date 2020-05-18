@@ -233,3 +233,19 @@ class TestRecommendMethod(unittest.TestCase):
         # 2. Act & 3. Assert
         with self.assertRaises(ValueError):
             recommend_method(ser, 'a')
+
+    def test_recommend_method_df_wrong_column(self):
+        """
+        Negative test
+
+        data: Correct data frame (df_breast_cancer)
+        column: 'z' (not a column of df_breast_cancer)
+
+        Checks that the function raises a ValueError if the columns doesn't
+        exist in the data.
+        """
+        # 1. Arrange
+        df = generate_df_breast_cancer()
+        # 2. Act & 3. Assert
+        with self.assertRaises(ValueError):
+            recommend_method(df, column='z')
