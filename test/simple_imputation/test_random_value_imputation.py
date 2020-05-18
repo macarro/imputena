@@ -42,6 +42,42 @@ class TestRandomValueImputation(unittest.TestCase):
         # 3. Assert
         self.assertEqual(df.isna().sum().sum(), 0)
 
+    def test_RVI_df_normal_distribution(self):
+        """
+        Positive test
+
+        data: Correct dataframe (divcols)
+        distribution: 'normal'
+
+        Checks that the original dataframe remains unmodified and that the
+        returned dataframe contains 0 NA values, 18 less than the original.
+        """
+        # 1. Arrange
+        df = generate_example_df_divcols()
+        # 2. Act
+        df2 = random_value_imputation(df, 'normal')
+        # 3. Assert
+        self.assertEqual(df.isna().sum().sum(), 18)
+        self.assertEqual(df2.isna().sum().sum(), 0)
+
+    def test_RVI_df_integer_distribution(self):
+        """
+        Positive test
+
+        data: Correct dataframe (divcols)
+        distribution: 'integer'
+
+        Checks that the original dataframe remains unmodified and that the
+        returned dataframe contains 0 NA values, 18 less than the original.
+        """
+        # 1. Arrange
+        df = generate_example_df_divcols()
+        # 2. Act
+        df2 = random_value_imputation(df, 'integer')
+        # 3. Assert
+        self.assertEqual(df.isna().sum().sum(), 18)
+        self.assertEqual(df2.isna().sum().sum(), 0)
+
     # Positive tests for data as a series -------------------------------------
 
     def test_RVI_series_returning(self):
