@@ -1,25 +1,17 @@
 Public functions
 ================
 
-delete_listwise
----------------
+Listwise deletion
+-----------------
 .. autofunction:: imputena.delete_listwise
 
-delete_pairwise
----------------
+Pairwise deletion
+-----------------
 .. autofunction:: imputena.delete_pairwise
 
-delete_columns
---------------
+Variable deletion
+-----------------
 .. autofunction:: imputena.delete_columns
-
-locf
-----
-.. autofunction:: imputena.locf
-
-nocb
-----
-.. autofunction:: imputena.nocb
 
 Random sample imputation
 ------------------------
@@ -28,6 +20,14 @@ Random sample imputation
 Random hot deck imputation
 --------------------------
 .. autofunction:: imputena.random_hot_deck_imputation
+
+Last observation carried forward
+--------------------------------
+.. autofunction:: imputena.locf
+
+Next observation carried backward
+---------------------------------
+.. autofunction:: imputena.nocb
 
 Substitution by most frequent value
 -----------------------------------
@@ -73,6 +73,10 @@ Multiple imputation by chained equations
 ----------------------------------------
 .. autofunction:: imputena.mice
 
+Get applicable methods
+----------------------
+.. autofunction:: imputena.get_applicable_methods
+
 Recommend method
 ----------------
 .. autofunction:: imputena.recommend_method
@@ -80,7 +84,3 @@ Recommend method
 Impute by recommended
 ---------------------
 .. autofunction:: imputena.impute_by_recommended
-
-Get applicable methods
-----------------------
-.. autofunction:: imputena.get_applicable_methods
