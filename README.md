@@ -86,7 +86,7 @@ python -m unittest
 ```
 
 To execute only the tests contained in a particular test class, for example
-`recommendation/test_delete_listwise.py`, run the following command at the
+`deletion/test_delete_listwise.py`, run the following command at the
  project root directory:
 
 ```ShellSession
