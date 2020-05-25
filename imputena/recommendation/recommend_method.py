@@ -2,9 +2,8 @@ import pandas as pd
 
 
 from .utils import (
-    is_series, is_dataframe, is_categorical, is_numeric, contains_categorical,
-    contains_only_categorical, is_temporal, has_lt_10_percent_na,
-    has_gt_80_percent_cor)
+    is_series, is_dataframe, is_categorical, contains_categorical,
+    is_temporal, has_lt_10_percent_na, has_gt_80_percent_cor)
 
 
 def recommend_method(data=None, column=None, title_only=False):
