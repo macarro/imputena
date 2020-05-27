@@ -1,6 +1,5 @@
 import pandas as pd
 
-from .recommend_method import recommend_method
 from .utils import is_series, is_dataframe
 from imputena import *
 
