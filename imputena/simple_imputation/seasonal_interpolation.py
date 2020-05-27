@@ -19,7 +19,7 @@ def seasonal_interpolation(
     :param dec_model: The decomposition model to use.
     :type dec_model: {'multiplicative', 'additive'}, default 'multiplicative'
     :param int_method: The interpolation model to use.
-    :type int_method: {'linear', 'quadratic', 'cubic'}
+    :type int_method: {'linear', 'quadratic', 'cubic'}, default 'linear'
     :param int_direction: Direction in which to interpolate values when the
         interpolation method is linear.
     :type int_direction: {'forward', 'backward', 'both'}, default 'both'
