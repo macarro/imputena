@@ -33,7 +33,7 @@ All these treatments can be applied to whole datasets or parts of them and
 
 setuptools.setup(
     name='imputena',
-    version='0.4',
+    version='1.0',
     description='Package that allows both automated and customized treatment '
             'of missing values in datasets using Python.',
     long_description=long_description,
@@ -44,7 +44,7 @@ setuptools.setup(
     author_email='migmackle@alum.us.es',
     license='MIT',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Natural Language :: English',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
