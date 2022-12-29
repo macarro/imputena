@@ -62,6 +62,6 @@ setuptools.setup(
         'pandas',
         'numpy',
         'statsmodels',
-        'sklearn'
+        'scikit-learn'
     ],
 )
